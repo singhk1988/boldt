@@ -13,15 +13,15 @@ function FormStatus() {
   const setVerticalStep = (index) => setActiveStep(index);
 
   return (
-    <div className="status">
+    <div className="formStatus">
       <img
-        className="status-imgLogo"
+        className="formStatus-imgLogo"
         src={logo}
         alt="img"
         width="200"
         height="100"
       />
-      <div className="status-stepper">
+      <div className="formStatus-stepper">
         <div className={stepperStyle}>
           <Stepper activeStep={activeStep} vertical >
             <Step onClick={setVerticalStep}>

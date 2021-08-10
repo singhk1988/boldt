@@ -11,32 +11,4 @@
     flex: 7;
 }
 
-.status {
-    margin-top: 50px;
-}
-.status-imgLogo {
-    object-fit: contain;
-}
 
-.status-stepper{
-    margin-top: 80px;
-    padding: 10px;
-}
-
-.save{
-    padding: 20px;
-}
-.contact{
-    padding: 100px;
-    margin-top: 00;
-    padding-left: 150px;
-    padding-right: 150px;
-}
-
-.contact-title {
-    color: rgb(3, 3, 85);
-}
-
-.contact-details{
-    margin-top: 50px;
-}

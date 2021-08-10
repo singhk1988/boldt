@@ -9,19 +9,17 @@ function ContactDetails() {
 
   return (
     <div>
-      <div className="save" align="right">
+      <div className="contact-save" align="right">
         <Button variant="primary">Unterbrechen & Specichern</Button>
       </div>
       <div className="contact" align="left">
         <h1>
-          {" "}
           <b className="contact-title">Kontaktdaten</b>
         </h1>
         <h5>Bitte tragen Sie hier Ihre Kontaktdaten ein.</h5>
         <div className="contact-details">
           <div className="row">
             <div className="col-md-6">
-              {" "}
               <TextField
                 name="Vorname"
                 label="Vorname"
@@ -72,7 +70,6 @@ function ContactDetails() {
           </div>
           <div className="row">
             <div className="col-md-6">
-              {" "}
               <TextField
                 name="Telefon"
                 label="Telefon"
@@ -81,7 +78,6 @@ function ContactDetails() {
               />
             </div>
             <div className="col-md-6">
-              {" "}
               <TextField
                 name="Telefax"
                 label="Telefax"
@@ -92,7 +88,6 @@ function ContactDetails() {
           </div>
           <div className="row">
             <div className="col-md-6">
-              {" "}
               <TextField
                 name="Telefon"
                 label="E-Mail Adresse"
@@ -104,7 +99,9 @@ function ContactDetails() {
           </div>
         </div>
         <Button>Return</Button>
-        <Button style={{marginLeft: "45px"}} variant="primary">Continue</Button>
+        <Button style={{ marginLeft: "45px" }} variant="primary">
+          Continue
+        </Button>
       </div>
     </div>
   );

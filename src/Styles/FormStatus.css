@@ -1,0 +1,12 @@
+.formStatus {
+    margin-top: 20px;
+}
+.formStatus-imgLogo {
+    object-fit: contain;
+}
+
+.formStatus-stepper{
+    margin-top: 30px;
+    padding: 5px;
+    font-size: 11px;
+}
