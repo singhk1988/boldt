@@ -1,3 +1,16 @@
+## Solution
+
+Solution|Author(s)
+--------|---------
+boldt-form | Kumod Singh, Bharathy Ravichandran
+
+## Version history
+
+Version|Date|Comments
+-------|----|--------
+1.0.0 | 08/8/2021 | Initial release
+1.0.1 | 11/8/2021 | Added form field validation for ContactDetails page
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -1,10 +1,45 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@cimpress/react-components";
+import validate from "./ValidateData";
 
 function ContactDetails() {
-  const [text, setText] = useState("");
-  const onInputChange = (e) => {
-    setText(e.target.value);
+  const [values, setValues] = useState({
+    vorname: "",
+    nachname: "",
+    straße: "",
+    plz: "",
+    ort: "",
+    telefon: "+49",
+    telefax: "",
+    email: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const message = "Email address is invalid";
+    if (name === "email") {
+      if (!/\S+@\S+\.\S+/.test(value)) {
+        setErrors({
+          ...errors,
+          [name]: message,
+        });
+      } else {
+        setErrors({
+          ...errors,
+          [name]: "",
+        });
+      }
+    }
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setErrors(validate(values));
   };
 
   return (
@@ -21,19 +56,21 @@ function ContactDetails() {
           <div className="row">
             <div className="col-md-6">
               <TextField
-                name="Vorname"
+                name="vorname"
                 label="Vorname"
-                value={text}
-                onChange={(e) => onInputChange(e)}
+                value={values.vorname.replace(/[^a-zA-Z]/gi, "")}
+                onChange={(e) => handleChange(e)}
+                helpText={errors.vorname}
               />
             </div>
             <div className="col-md-6">
               {" "}
               <TextField
-                name="Nachname"
+                name="nachname"
                 label="Nachname"
-                value={text}
-                onChange={(e) => onInputChange(e)}
+                value={values.nachname.replace(/[^a-zA-Z]/gi, "")}
+                onChange={(e) => handleChange(e)}
+                helpText={errors.nachname}
               />
             </div>
           </div>
@@ -41,28 +78,32 @@ function ContactDetails() {
             <div className="col-md-6">
               {" "}
               <TextField
-                name="Vorname"
+                name="straße"
                 label="Straße und Hausnummer"
-                value={text}
-                onChange={(e) => onInputChange(e)}
+                value={values.straße.replace(/[^a-zA-Z0-9]/gi, "")}
+                onChange={(e) => handleChange(e)}
+                helpText={errors.straße}
               />
             </div>
             <div className="col-md-6">
               <div className="row">
                 <div className="col-md-3">
                   <TextField
-                    name="PLZ"
+                    name="plz"
                     label="PLZ"
-                    value={text}
-                    onChange={(e) => onInputChange(e)}
+                    maxLength="5"
+                    value={values.plz.replace(/\D/g, "")}
+                    onChange={(e) => handleChange(e)}
+                    helpText={errors.plz}
                   />
                 </div>
                 <div className="col-md-9">
                   <TextField
-                    name="Ort"
+                    name="ort"
                     label="Ort"
-                    value={text}
-                    onChange={(e) => onInputChange(e)}
+                    value={values.ort.replace(/[^a-zA-Z]/gi, "")}
+                    onChange={(e) => handleChange(e)}
+                    helpText={errors.ort}
                   />
                 </div>
               </div>
@@ -71,35 +112,45 @@ function ContactDetails() {
           <div className="row">
             <div className="col-md-6">
               <TextField
-                name="Telefon"
+                name="telefon"
                 label="Telefon"
-                value={text}
-                onChange={(e) => onInputChange(e)}
+                type="tel"
+                maxLength="15"
+                value={values.telefon.replace(/[^0-9+]/, "")}
+                onChange={(e) => handleChange(e)}
+                helpText={errors.telefon}
               />
             </div>
             <div className="col-md-6">
               <TextField
-                name="Telefax"
+                name="telefax"
                 label="Telefax"
-                value={text}
-                onChange={(e) => onInputChange(e)}
+                value={values.telefax.replace(/[^0-9+\-()]/, "")}
+                onChange={(e) => handleChange(e)}
+                helpText={errors.telefax}
               />
             </div>
           </div>
           <div className="row">
             <div className="col-md-6">
               <TextField
-                name="Telefon"
+                name="email"
                 label="E-Mail Adresse"
-                value={text}
-                onChange={(e) => onInputChange(e)}
+                type="email"
+                value={values.email}
+                onChange={(e) => handleChange(e)}
+                helpText={errors.email}
               />
             </div>
             <div className="col-md-6"></div>
           </div>
         </div>
         <Button>Return</Button>
-        <Button style={{ marginLeft: "45px" }} variant="primary">
+        <Button
+          style={{ marginLeft: "45px" }}
+          variant="primary"
+          onClick={handleSubmit}
+        >
           Continue
         </Button>
       </div>
