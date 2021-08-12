@@ -2,7 +2,7 @@
 
 Solution|Author(s)
 --------|---------
-boldt-form | Kumod Singh, Bharathy Ravichandran
+boldt-form | Kumod Singh
 
 ## Version history
 
