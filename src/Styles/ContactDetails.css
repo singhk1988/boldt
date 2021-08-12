@@ -1,16 +1,12 @@
-
-.contact-save{
-    padding: 20px;
-}
-.contact{
-    padding-top: 20px;
-    padding-left: 150px;
-    padding-right: 150px;
+.postal {
+  display: flex;
 }
 
-.contact-title {
-    color: rgb(3, 3, 85);
+.postal-code {
+    flex: 2;
 }
-.contact-details{
-    margin-top: 50px;
+
+.postal-location {
+    flex: 5;
+    margin-left: 8px;
 }
