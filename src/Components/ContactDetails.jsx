@@ -9,15 +9,12 @@ function ContactDetails() {
 
   return (
     <div>
-      <div className="contact-save" align="right">
-        <Button variant="primary">Unterbrechen & Specichern</Button>
-      </div>
       <div className="contact" align="left">
         <h1>
-          <b className="contact-title">Kontaktdaten</b>
+          <b className="title">Kontaktdaten</b>
         </h1>
-        <h5>Bitte tragen Sie hier Ihre Kontaktdaten ein.</h5>
-        <div className="contact-details">
+        <div className='title-description'>Bitte tragen Sie hier Ihre Kontaktdaten ein.</div>
+        <div className="margin-body">
           <div className="row">
             <div className="col-md-6">
               <TextField
@@ -47,25 +44,22 @@ function ContactDetails() {
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <div className="col-md-6">
-              <div className="row">
-                <div className="col-md-3">
-                  <TextField
-                    name="PLZ"
-                    label="PLZ"
-                    value={text}
-                    onChange={(e) => onInputChange(e)}
-                  />
-                </div>
-                <div className="col-md-9">
-                  <TextField
-                    name="Ort"
-                    label="Ort"
-                    value={text}
-                    onChange={(e) => onInputChange(e)}
-                  />
-                </div>
-              </div>
+            <div className="col-md-6 postal">
+              <TextField
+                className="postal-code"
+                name="PLZ"
+                label="PLZ"
+                value={text}
+                onChange={(e) => onInputChange(e)}
+              />
+
+              <TextField
+                className="postal-location"
+                name="Ort"
+                label="Ort"
+                value={text}
+                onChange={(e) => onInputChange(e)}
+              />
             </div>
           </div>
           <div className="row">
@@ -98,10 +92,6 @@ function ContactDetails() {
             <div className="col-md-6"></div>
           </div>
         </div>
-        <Button>Return</Button>
-        <Button style={{ marginLeft: "45px" }} variant="primary">
-          Continue
-        </Button>
       </div>
     </div>
   );
