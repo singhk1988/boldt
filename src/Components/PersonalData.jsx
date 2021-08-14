@@ -1,10 +1,26 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@cimpress/react-components";
+import DatePicker from '@cimpress/react-components/lib/DatePicker';
+import { string } from "prop-types";
 
 function PersonalData() {
-  const [text, setText] = useState("");
-  const onInputChange = (e) => {
-    setText(e.target.value);
+  const [values, setValues] = useState({
+    geburtsdatum: "",
+    geburtsname: "",
+    geburtsort: "",
+    geburtsland: "",
+    religion: "",
+    staatsangehörigkeit: "",
+    nationalität: "",
+  });
+  const [errors, setErrors] = useState({});
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
   };
 
   return (
@@ -18,20 +34,22 @@ function PersonalData() {
       <div className="margin-body">
         <div className="row">
           <div className="col-md-6">
-            <TextField
-              name="Geburtsdatum"
-              label="Geburtsdatum"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+            <DatePicker
+            dateFormat="DD/MM/YYYY"
+            placeholder="Geburtsdatum"
+            className="form-textbox"
+            value={values.geburtsdatumd}
+            onChange={d => {setValues({...values, geburtsdatum: d});}}
             />
+           
           </div>
           <div className="col-md-6">
             {" "}
             <TextField
-              name="Geburtsname"
+              name="geburtsname"
               label="Geburtsname"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              value={values.geburtsname.replace(/[^a-zA-Z_ ]/gi, "")}
+              onChange={(e) => handleChange(e)}
             />
           </div>
         </div>
@@ -39,46 +57,46 @@ function PersonalData() {
           <div className="col-md-6">
             {" "}
             <TextField
-              name="Geburtsort"
+              name="geburtsort"
               label="Geburtsort"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              value={values.geburtsort.replace(/[^a-zA-Z_ ]/gi, "")}
+              onChange={(e) => handleChange(e)}
             />
           </div>
           <div className="col-md-6">
             <TextField
-              name="Geburtsland"
+              name="geburtsland"
               label="Geburtsland"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              value={values.geburtsland.replace(/[^a-zA-Z_ ]/gi, "")}
+              onChange={(e) => handleChange(e)}
             />
           </div>
         </div>
         <div className="row">
           <div className="col-md-6">
             <TextField
-              name="Religion"
+              name="religion"
               label="Religion"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              value={values.religion.replace(/[^a-zA-Z_ ]/gi, "")}
+              onChange={(e) => handleChange(e)}
             />
           </div>
           <div className="col-md-6">
             <TextField
-              name="Staatsangehörigkeit"
+              name="staatsangehörigkeit"
               label="Staatsangehörigkeit"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              value={values.staatsangehörigkeit.replace(/[^a-zA-Z_ ]/gi, "")}
+              onChange={(e) => handleChange(e)}
             />
           </div>
         </div>
         <div className="row">
           <div className="col-md-6">
             <TextField
-              name="Nationalität"
+              name="nationalität"
               label="Nationalität"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              value={values.nationalität.replace(/[^a-zA-Z_ ]/gi, "")}
+              onChange={(e) => handleChange(e)}
             />
           </div>
           <div className="col-md-6"></div>

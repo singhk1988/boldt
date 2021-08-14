@@ -38,14 +38,20 @@ function Home() {
       </div>
       <div className="home-right">
         <div className="home-save" align="right">
-          <Button variant="primary">Unterbrechen & Specichern</Button>
+          <Button style={{ background: "#5DA1FA", border: "1px solid #5DA1FA" }} variant="primary">
+            Unterbrechen & Specichern
+          </Button>
         </div>
         <div align="left" className="cotainner">
           {body}
           <div className="actions">
             <Button onClick={onClickReturn}>Return</Button>
             <Button
-              style={{ marginLeft: "15px" }}
+              style={{
+                marginLeft: "15px",
+                background: "#5DA1FA",
+                border: "1px solid #5DA1FA",
+              }}
               onClick={onClickContinue}
               variant="primary"
             >
