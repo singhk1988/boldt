@@ -77,16 +77,15 @@ function ContactDetails() {
               <TextField
                 name="straße"
                 label="Straße und Hausnummer"
-                value={values.straße.replace(/[^a-zA-Z0-9]/gi, "")}
+                value={values.straße.replace(/[^a-zA-Z0-9_ ]/gi, "")}
                 onChange={(e) => handleChange(e)}
                 helpText={errors.straße}
               />
             </div>
 
-            <div className="col-md-6">
-              <div className="row">
-                <div className="col-md-3">
+            <div className="col-md-6 postal">
                   <TextField
+                   className="postal-code"
                     name="plz"
                     label="PLZ"
                     maxLength="5"
@@ -94,9 +93,9 @@ function ContactDetails() {
                     onChange={(e) => handleChange(e)}
                     helpText={errors.plz}
                   />
-                </div>
-                <div className="col-md-9">
+               
                   <TextField
+                  className="postal-location"
                     name="ort"
                     label="Ort"
                     value={values.ort.replace(/[^a-zA-Z]/gi, "")}
@@ -104,26 +103,6 @@ function ContactDetails() {
                     helpText={errors.ort}
                   />
                 </div>
-              </div>
-
-            <div className="col-md-6 postal">
-              <TextField
-                className="postal-code"
-                name="PLZ"
-                label="PLZ"
-                value={text}
-                onChange={(e) => onInputChange(e)}
-              />
-
-              <TextField
-                className="postal-location"
-                name="Ort"
-                label="Ort"
-                value={text}
-                onChange={(e) => onInputChange(e)}
-              />
-
-            </div>
           </div>
           <div className="row">
             <div className="col-md-6">

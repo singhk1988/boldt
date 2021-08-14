@@ -4,12 +4,43 @@ import {
   Button,
   Radio,
   RadioGroup,
+  Tooltip,
 } from "@cimpress/react-components";
+import DatePicker from '@cimpress/react-components/lib/DatePicker';
+import { MdInfo } from "react-icons/md";
 
 function CompanyData() {
-  const [text, setText] = useState("");
-  const onInputChange = (e) => {
-    setText(e.target.value);
+  
+  const [values, setValues] = useState({
+    geschäftsgründungsdatum: "",
+    firmensitz: "",
+    ustID: "DE",
+    homepage: "",
+    steuernummer: "",
+    finanzamt: "",
+    konto: "",
+    blz: "",
+    bank: "",
+    iban: "",
+    bic: "",
+  });
+  const [errors, setErrors] = useState({});
+  const [show, setShow] = useState(false);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if(name === "iban"){
+      console.log("inside iban");
+      if(/[A-Z]{2}\d{6}/.test(value)){
+        console.log("condition working");
+      }
+    }
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
+  const onClickShow = () => {
+    setShow(!show);
   };
 
   return (
@@ -35,20 +66,21 @@ function CompanyData() {
         </RadioGroup>
         <div className="row">
           <div className="col-md-6">
-            <TextField
-              name="Geschäftsgründungsdatum"
-              label="Geschäftsgründungsdatum"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+          <DatePicker
+            dateFormat="DD/MM/YYYY"
+              placeholder="geschäftsgründungsdatum"
+              className="form-textbox"
+              value={values.geschäftsgründungsdatum}
+              onChange={d => {setValues({...values, geschäftsgründungsdatum: d});}}
             />
           </div>
           <div className="col-md-6">
             {" "}
             <TextField
-              name="Firmensitz"
+              name="firmensitz"
               label="Firmensitz"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              value={values.firmensitz.replace(/[^a-zA-Z_ ]/gi, "")}
+              onChange={(e) => handleChange(e)}
             />
           </div>
         </div>
@@ -56,83 +88,95 @@ function CompanyData() {
           <div className="col-md-6">
             {" "}
             <TextField
-              name="Ust.-ID"
-              label="Straße und Hausnummer"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              name="ustID"
+              label="Ust.-ID"
+              maxLength='11'
+              value={values.ustID.replace(/[^DE0-9]/, "")}
+              onChange={(e) => handleChange(e)}
+              rightAddon={(
+                <Tooltip direction="top" contents="Please enter the value" show={show}>
+                <Button onClick={onClickShow}>
+                  <MdInfo />
+                </Button>
+                </Tooltip>
+                )}
             />
           </div>
           <div className="col-md-6">
             <TextField
               className="postal-code"
-              name="Homepage"
+              name="homepage"
               label="Homepage"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              value={values.homepage.replace(/\./, "")}
+              onChange={(e) => handleChange(e)}
             />
           </div>
         </div>
         <div className="row">
           <div className="col-md-6">
             <TextField
-              name="Steuernummer"
+              name="steuernummer"
               label="Steuernummer"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              maxLength='13'
+              value={values.steuernummer.replace(/[^A-Z0-9]/,"")}
+              onChange={(e) => handleChange(e)}
             />
           </div>
           <div className="col-md-6">
             <TextField
-              name="Finanzamt"
+              name="finanzamt"
               label="Finanzamt"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              value={values.finanzamt.replace(/[^a-zA-Z_ ]/gi, "")}
+              onChange={(e) => handleChange(e)}
             />
           </div>
         </div>
         <div className="row">
           <div className="col-md-6">
             <TextField
-              name="Konto"
+              name="konto"
               label="Konto"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              maxLength='10'
+              value={values.konto.replace(/\D/g, "")}
+              onChange={(e) => handleChange(e)}
             />
           </div>
           <div className="col-md-6">
             <TextField
-              name="BLZ"
+              name="blz"
               label="BLZ"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              maxLength='10'
+              value={values.blz.replace(/\D/g, "")}
+              onChange={(e) => handleChange(e)}
             />
           </div>
         </div>
         <div className="row">
           <div className="col-md-6">
             <TextField
-              name="Bank"
+              name="bank"
               label="Bank"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              value={values.bank.replace(/[^a-zA-Z_ ]/gi, "")}
+              onChange={(e) => handleChange(e)}
             />
           </div>
           <div className="col-md-6">
             <TextField
-              name="IBAN"
+              name="iban"
               label="IBAN"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              maxLength='22'
+              value={values.iban.replace(/[A-Z]/, "")}
+              onChange={(e) => handleChange(e)}
             />
           </div>
         </div>
         <div className="row">
           <div className="col-md-6">
             <TextField
-              name="BIC"
+              name="bic"
               label="BIC"
-              value={text}
-              onChange={(e) => onInputChange(e)}
+              value={values.bic.replace(/[^A-Z0-9]/,"")}
+              onChange={(e) => handleChange(e)}
             />
           </div>
         </div>
