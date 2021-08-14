@@ -31,3 +31,10 @@
 .title-description {
   font-size: 13px;
 }
+
+.form-textbox{
+  width: 100% !important;
+}
+.form-textbox .rdt{
+  width: 100% !important;
+}

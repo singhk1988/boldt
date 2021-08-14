@@ -93,13 +93,13 @@ function CompanyData() {
               maxLength='11'
               value={values.ustID.replace(/[^DE0-9]/, "")}
               onChange={(e) => handleChange(e)}
-              rightAddon={(
-                <Tooltip direction="top" contents="Please enter the value" show={show}>
-                <Button onClick={onClickShow}>
-                  <MdInfo />
-                </Button>
-                </Tooltip>
-                )}
+              // rightAddon={(
+              //   <Tooltip direction="top" contents="Please enter the value" show={show}>
+              //   <Button onClick={onClickShow}>
+              //     <MdInfo />
+              //   </Button>
+              //   </Tooltip>
+              //   )}
             />
           </div>
           <div className="col-md-6">
