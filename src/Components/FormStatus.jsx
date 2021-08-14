@@ -8,7 +8,7 @@ const getIcon = (activeStep, stepIndext) => {
   return activeStep > stepIndext ? checkmarkIcon : null;
 };
 const stepperStyle = css({
-  height: "450px",
+  height: "350px",
   padding: "0px 60px",
 });
 function FormStatus({ activeStep, setVerticalStep }) {
