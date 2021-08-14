@@ -38,7 +38,7 @@ function FormStatus({ activeStep, setVerticalStep }) {
               <div>Beufliche Daten</div>
             </Step>
             <Step onClick={setVerticalStep} icon={getIcon(activeStep, 3)}>
-              <div>Steuerliche Daten und Bankverbindung</div>
+              <div className="formStatus-text">Steuerliche Daten und Bankverbindung</div>
             </Step>
             <Step onClick={setVerticalStep} icon={getIcon(activeStep, 4)}>
               <div>Famillenstand</div>
