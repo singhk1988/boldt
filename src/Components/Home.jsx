@@ -5,7 +5,7 @@ import FormStatus from "./FormStatus";
 import ContactDetails from "./ContactDetails";
 import PersonalData from "./PersonalData";
 import CompanyData from "./CompanyData";
-const maxStep = 7;
+const maxStep = 8;
 
 function Home() {
   const [activeStep, setActiveStep] = useState(1);
@@ -23,7 +23,7 @@ function Home() {
 
   const onClickContinue = () => {
     const nextStep = activeStep + 1;
-    setActiveStep(nextStep < 7 ? nextStep : 6);
+    setActiveStep(nextStep < 8 ? nextStep : 7);
   };
 
   const onClickReturn = () => {
@@ -39,7 +39,7 @@ function Home() {
       <div className="home-right">
         <div className="home-save" align="right">
           <Button variant="primary">Unterbrechen & Specichern</Button>
-        </div>
+        </div> 
         <div align="left" className="cotainner">
           {body}
           <div className="actions">
