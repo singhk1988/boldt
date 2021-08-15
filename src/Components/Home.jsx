@@ -13,12 +13,12 @@ function Home() {
   const divRef = useRef(null);
 
   useEffect(() => {
-     const windowHeight = window.innerHeight;
-     console.log('windowHeight', windowHeight);
-     if(windowHeight) {
+    const windowHeight = window.innerHeight;
+    console.log("windowHeight", windowHeight);
+    if (windowHeight) {
       divRef.current.style.height = `${windowHeight}px`;
-     }
-  })
+    }
+  });
   let body = "";
 
   if (activeStep === 0) {
@@ -46,18 +46,22 @@ function Home() {
       </div>
       <div className="home-right">
         <div className="home-save" align="right">
-          <Button className='home-button' variant="primary">
+          <Button style={{ background: "#5DA1FA",  border: "1px solid #5DA1FA"}} className="home-button" variant="primary">
             Unterbrechen & Specichern
           </Button>
         </div>
         <div align="left" className="cotainner">
           {body}
-          <br/>
+          <br />
           <div className="actions">
             <Button onClick={onClickReturn}>Return</Button>
             <Button
-              className='home-continue-button'
-              style={{ marginLeft: "15px" }}
+              className="home-continue-button"
+              style={{
+                marginLeft: "15px",
+                background: "#2C88FF",
+                border: "1px solid #2C88FF",
+              }}
               onClick={onClickContinue}
               variant="primary"
             >
