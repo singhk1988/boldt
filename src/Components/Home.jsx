@@ -8,7 +8,7 @@ import CompanyData from "./CompanyData";
 const maxStep = 8;
 
 function Home() {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(0);
   const setVerticalStep = (index) => setActiveStep(index);
 
   let body = "";
@@ -49,7 +49,7 @@ function Home() {
             <Button
               style={{
                 marginLeft: "15px",
-                background: "#5DA1FA",
+                background: "#2C88FF",
                 border: "1px solid #5DA1FA",
               }}
               onClick={onClickContinue}
