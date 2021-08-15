@@ -69,7 +69,7 @@ function ContactDetails() {
               <TextField
                 name="vorname"
                 label="Vorname"
-                value={values.vorname.replace(/[^a-zA-Z]/gi, "")}
+                value={values.vorname}
                 onChange={(e) => handleChange(e)}
                 helpText={errors.vorname}
               />
@@ -79,7 +79,7 @@ function ContactDetails() {
               <TextField
                 name="nachname"
                 label="Nachname"
-                value={values.nachname.replace(/[^a-zA-Z]/gi, "")}
+                value={values.nachname}
                 onChange={(e) => handleChange(e)}
                 helpText={errors.nachname}
               />
@@ -91,7 +91,7 @@ function ContactDetails() {
               <TextField
                 name="straße"
                 label="Straße und Hausnummer"
-                value={values.straße.replace(/[^a-zA-Z0-9_ ]/gi, "")}
+                value={values.straße}
                 onChange={(e) => handleChange(e)}
                 helpText={errors.straße}
               />
@@ -103,7 +103,7 @@ function ContactDetails() {
                 name="plz"
                 label="PLZ"
                 maxLength="5"
-                value={values.plz.replace(/\D/g, "")}
+                value={values.plz}
                 onChange={(e) => handleChange(e)}
                 helpText={errors.plz}
               />
@@ -112,7 +112,7 @@ function ContactDetails() {
                 className="postal-location"
                 name="ort"
                 label="Ort"
-                value={values.ort.replace(/[^a-zA-Z]/gi, "")}
+                value={values.ort}
                 onChange={(e) => handleChange(e)}
                 helpText={errors.ort}
               />
@@ -125,7 +125,7 @@ function ContactDetails() {
                 label="Telefon"
                 type="tel"
                 maxLength="15"
-                value={values.telefon.replace(/[^0-9+]/, "")}
+                value={values.telefon}
                 onChange={(e) => handleChange(e)}
                 helpText={errors.telefon}
               />
@@ -134,7 +134,7 @@ function ContactDetails() {
               <TextField
                 name="telefax"
                 label="Telefax"
-                value={values.telefax.replace(/[^0-9+\-()]/, "")}
+                value={values.telefax}
                 onChange={(e) => handleChange(e)}
                 helpText={errors.telefax}
               />

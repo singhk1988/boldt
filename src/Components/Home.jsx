@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@cimpress/react-components";
 
 import FormStatus from "./FormStatus";
@@ -10,7 +10,15 @@ const maxStep = 8;
 function Home() {
   const [activeStep, setActiveStep] = useState(0);
   const setVerticalStep = (index) => setActiveStep(index);
+  const divRef = useRef(null);
 
+  useEffect(() => {
+     const windowHeight = window.innerHeight;
+     console.log('windowHeight', windowHeight);
+     if(windowHeight) {
+      divRef.current.style.height = `${windowHeight}px`;
+     }
+  })
   let body = "";
 
   if (activeStep === 0) {
@@ -32,13 +40,13 @@ function Home() {
   };
 
   return (
-    <div className="home">
+    <div className="home" ref={divRef}>
       <div className="home-left">
         <FormStatus activeStep={activeStep} setVerticalStep={setVerticalStep} />
       </div>
       <div className="home-right">
         <div className="home-save" align="right">
-          <Button style={{ background: "#5DA1FA", border: "1px solid #5DA1FA" }} variant="primary">
+          <Button className='home-button' variant="primary">
             Unterbrechen & Specichern
           </Button>
         </div>
@@ -48,11 +56,8 @@ function Home() {
           <div className="actions">
             <Button onClick={onClickReturn}>Return</Button>
             <Button
-              style={{
-                marginLeft: "15px",
-                background: "#2C88FF",
-                border: "1px solid #5DA1FA",
-              }}
+              className='home-continue-button'
+              style={{ marginLeft: "15px" }}
               onClick={onClickContinue}
               variant="primary"
             >

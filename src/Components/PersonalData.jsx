@@ -48,7 +48,7 @@ function PersonalData() {
             <TextField
               name="geburtsname"
               label="Geburtsname"
-              value={values.geburtsname.replace(/[^a-zA-Z_ ]/gi, "")}
+              value={values.geburtsname}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -59,7 +59,7 @@ function PersonalData() {
             <TextField
               name="geburtsort"
               label="Geburtsort"
-              value={values.geburtsort.replace(/[^a-zA-Z_ ]/gi, "")}
+              value={values.geburtsort}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -67,7 +67,7 @@ function PersonalData() {
             <TextField
               name="geburtsland"
               label="Geburtsland"
-              value={values.geburtsland.replace(/[^a-zA-Z_ ]/gi, "")}
+              value={values.geburtsland}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -77,7 +77,7 @@ function PersonalData() {
             <TextField
               name="religion"
               label="Religion"
-              value={values.religion.replace(/[^a-zA-Z_ ]/gi, "")}
+              value={values.religion}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -85,7 +85,7 @@ function PersonalData() {
             <TextField
               name="staatsangehörigkeit"
               label="Staatsangehörigkeit"
-              value={values.staatsangehörigkeit.replace(/[^a-zA-Z_ ]/gi, "")}
+              value={values.staatsangehörigkeit}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -95,7 +95,7 @@ function PersonalData() {
             <TextField
               name="nationalität"
               label="Nationalität"
-              value={values.nationalität.replace(/[^a-zA-Z_ ]/gi, "")}
+              value={values.nationalität}
               onChange={(e) => handleChange(e)}
             />
           </div>

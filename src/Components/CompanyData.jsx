@@ -79,7 +79,7 @@ function CompanyData() {
             <TextField
               name="firmensitz"
               label="Firmensitz"
-              value={values.firmensitz.replace(/[^a-zA-Z_ ]/gi, "")}
+              value={values.firmensitz}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -91,7 +91,7 @@ function CompanyData() {
               name="ustID"
               label="Ust.-ID"
               maxLength='11'
-              value={values.ustID.replace(/[^DE0-9]/, "")}
+              value={values.ustID}
               onChange={(e) => handleChange(e)}
               // rightAddon={(
               //   <Tooltip direction="top" contents="Please enter the value" show={show}>
@@ -107,7 +107,7 @@ function CompanyData() {
               className="postal-code"
               name="homepage"
               label="Homepage"
-              value={values.homepage.replace(/\./, "")}
+              value={values.homepage}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -118,7 +118,7 @@ function CompanyData() {
               name="steuernummer"
               label="Steuernummer"
               maxLength='13'
-              value={values.steuernummer.replace(/[^A-Z0-9]/,"")}
+              value={values.steuernummer}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -126,7 +126,7 @@ function CompanyData() {
             <TextField
               name="finanzamt"
               label="Finanzamt"
-              value={values.finanzamt.replace(/[^a-zA-Z_ ]/gi, "")}
+              value={values.finanzamt}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -137,7 +137,7 @@ function CompanyData() {
               name="konto"
               label="Konto"
               maxLength='10'
-              value={values.konto.replace(/\D/g, "")}
+              value={values.konto}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -146,7 +146,7 @@ function CompanyData() {
               name="blz"
               label="BLZ"
               maxLength='10'
-              value={values.blz.replace(/\D/g, "")}
+              value={values.blz}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -156,7 +156,7 @@ function CompanyData() {
             <TextField
               name="bank"
               label="Bank"
-              value={values.bank.replace(/[^a-zA-Z_ ]/gi, "")}
+              value={values.bank}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -165,7 +165,7 @@ function CompanyData() {
               name="iban"
               label="IBAN"
               maxLength='22'
-              value={values.iban.replace(/[A-Z]/, "")}
+              value={values.iban}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -175,7 +175,7 @@ function CompanyData() {
             <TextField
               name="bic"
               label="BIC"
-              value={values.bic.replace(/[^A-Z0-9]/,"")}
+              value={values.bic}
               onChange={(e) => handleChange(e)}
             />
           </div>

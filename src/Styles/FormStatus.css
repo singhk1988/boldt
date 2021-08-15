@@ -10,6 +10,14 @@
     padding: 5px;
     font-size: 11px;
 }
+.formStatus-steps {
+    flex-shrink: 0 !important;
+    width: 20px !important;
+    height: 20px !important;
+    border: 6px solid #9EC0F1 !important;
+    border-radius: 100% !important;
+    background-color: white !important;
+}
 .formStatus-text {
     text-align: left;
 }
