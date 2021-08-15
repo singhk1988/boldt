@@ -14,24 +14,12 @@ function ContactDetails() {
     email: "",
   });
 
+  const [email, setEmail] = useState({ error: "", status: "" });
+
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const message = "Email address is invalid";
-    if (name === "email") {
-      if (!/\S+@\S+\.\S+/.test(value)) {
-        setErrors({
-          ...errors,
-          [name]: message,
-        });
-      } else {
-        setErrors({
-          ...errors,
-          [name]: "",
-        });
-      }
-    }
     setValues({
       ...values,
       [name]: value,
@@ -42,13 +30,39 @@ function ContactDetails() {
     setErrors(validate(values));
   };
 
+  const onBlur = (e) => {
+    const { name, value } = e.target;
+    if (value === "") {
+      setEmail({
+        status: "",
+        error: "",
+      });
+      return;
+    }
+    if (name === "email") {
+      if (!/\S+@\S+\.\S+/.test(value)) {
+        setEmail({
+          status: "error",
+          error: "Bitte geben Sie eine gültige Email-Adresse ein",
+        });
+      }else {
+        setEmail({
+          status: "",
+          error: "",
+        });
+    } 
+    }
+  };
+
   return (
     <div>
       <div className="contact" align="left">
         <h1>
           <b className="title">Kontaktdaten</b>
         </h1>
-        <div className='title-description'>Bitte tragen Sie hier Ihre Kontaktdaten ein.</div>
+        <div className="title-description">
+          Bitte tragen Sie hier Ihre Kontaktdaten ein.
+        </div>
         <div className="margin-body">
           <div className="row">
             <div className="col-md-6">
@@ -84,25 +98,25 @@ function ContactDetails() {
             </div>
 
             <div className="col-md-6 postal">
-                  <TextField
-                   className="postal-code"
-                    name="plz"
-                    label="PLZ"
-                    maxLength="5"
-                    value={values.plz.replace(/\D/g, "")}
-                    onChange={(e) => handleChange(e)}
-                    helpText={errors.plz}
-                  />
-               
-                  <TextField
-                  className="postal-location"
-                    name="ort"
-                    label="Ort"
-                    value={values.ort.replace(/[^a-zA-Z]/gi, "")}
-                    onChange={(e) => handleChange(e)}
-                    helpText={errors.ort}
-                  />
-                </div>
+              <TextField
+                className="postal-code"
+                name="plz"
+                label="PLZ"
+                maxLength="5"
+                value={values.plz.replace(/\D/g, "")}
+                onChange={(e) => handleChange(e)}
+                helpText={errors.plz}
+              />
+
+              <TextField
+                className="postal-location"
+                name="ort"
+                label="Ort"
+                value={values.ort.replace(/[^a-zA-Z]/gi, "")}
+                onChange={(e) => handleChange(e)}
+                helpText={errors.ort}
+              />
+            </div>
           </div>
           <div className="row">
             <div className="col-md-6">
@@ -126,15 +140,17 @@ function ContactDetails() {
               />
             </div>
           </div>
-          <div className="row">
+          <div className="row" style={{ height: "70px" }}>
             <div className="col-md-6">
               <TextField
                 name="email"
                 label="E-Mail Adresse"
                 type="email"
+                status={email.status}
                 value={values.email}
                 onChange={(e) => handleChange(e)}
-                helpText={errors.email}
+                onBlur={onBlur}
+                helpText={email.error} //{errors.email}
               />
             </div>
             <div className="col-md-6"></div>

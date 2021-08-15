@@ -44,6 +44,7 @@ function Home() {
         </div>
         <div align="left" className="cotainner">
           {body}
+          <br/>
           <div className="actions">
             <Button onClick={onClickReturn}>Return</Button>
             <Button
