@@ -46,10 +46,10 @@ function CompanyData() {
   return (
     <div className="companyData" align="left">
       <h1>
-        <b className="title">Berufliche steuerliche Daten</b>
+        <b className="title">Beruflich steuerliche Daten</b>
       </h1>
       <div className="title-description">
-        Bitte tragen Sie hier Ihre Kontaktdaten ein.
+        Bitte tragen Sie hier Ihre beruflichen Daten ein.
       </div>
       <div className="margin-body">
         <div className="company-radio">

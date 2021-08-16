@@ -28,26 +28,26 @@ function FormStatus({ activeStep, setVerticalStep }) {
               <div>Kontaktdaten</div>
             </Step>
             <Step onClick={setVerticalStep} icon={getIcon(activeStep, 1)}>
-              <div>Personliche Daten</div>
+              <div>Persönliche Daten</div>
             </Step>
             <Step
               onClick={setVerticalStep}
               tip="Lorem ipsum tipsum"
               icon={getIcon(activeStep, 2)}
             >
-              <div>Beufliche Daten</div>
+              <div>Berufliche Daten</div>
             </Step>
             <Step onClick={setVerticalStep} icon={getIcon(activeStep, 3)}>
               <div className="formStatus-text">Steuerliche Daten und Bankverbindung</div>
             </Step>
             <Step onClick={setVerticalStep} icon={getIcon(activeStep, 4)}>
-              <div>Famillenstand</div>
+              <div>Familienstand</div>
             </Step>
             <Step onClick={setVerticalStep} icon={getIcon(activeStep, 5)}>
-              <div>Daten iherer Kinder</div>
+              <div>Daten Ihrer Kinder</div>
             </Step>
             <Step onClick={setVerticalStep} icon={getIcon(activeStep, 6)}>
-              <div>Dankeschon</div>
+              <div>Dankeschön</div>
             </Step>
           </Stepper>
         </div>

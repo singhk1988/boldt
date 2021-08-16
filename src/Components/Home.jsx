@@ -47,14 +47,14 @@ function Home() {
       <div className="home-right">
         <div className="home-save" align="right">
           <Button style={{ background: "#5DA1FA",  border: "1px solid #5DA1FA"}} className="home-button" variant="primary">
-            Unterbrechen & Specichern
+            Unterbrechen & Speichern
           </Button>
         </div>
         <div align="left" className="cotainner">
           {body}
           <br />
           <div className="actions">
-            <Button onClick={onClickReturn}>Return</Button>
+            <Button onClick={onClickReturn}>Zurück</Button>
             <Button
               className="home-continue-button"
               style={{
@@ -65,7 +65,7 @@ function Home() {
               onClick={onClickContinue}
               variant="primary"
             >
-              Continue
+              Weiter
             </Button>
           </div>
           <br />
