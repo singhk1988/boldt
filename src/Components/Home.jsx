@@ -46,7 +46,11 @@ function Home() {
       </div>
       <div className="home-right">
         <div className="home-save" align="right">
-          <Button style={{ background: "#5DA1FA",  border: "1px solid #5DA1FA"}} className="home-button" variant="primary">
+          <Button
+            style={{ background: "#5DA1FA", border: "1px solid #5DA1FA" }}
+            className="home-button"
+            variant="primary"
+          >
             Unterbrechen & Specichern
           </Button>
         </div>

@@ -45,3 +45,11 @@
 .form-textbox .rdt{
   width: 100% !important;
 }
+
+input {
+  border-radius: 5px !important;
+}
+
+form-control:focus {
+  border-color: #2C88FF !important;
+}
