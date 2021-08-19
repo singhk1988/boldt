@@ -53,3 +53,7 @@ input {
 form-control:focus {
   border-color: #2C88FF !important;
 }
+
+/* div[value*="step-circle"] {
+  background: #2C88FF !important;
+} */
