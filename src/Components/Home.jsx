@@ -51,7 +51,7 @@ function Home() {
             className="home-button"
             variant="primary"
           >
-            Unterbrechen & Specichern
+            Unterbrechen & Speichern
           </Button>
         </div>
         <div align="left" className="cotainner">
