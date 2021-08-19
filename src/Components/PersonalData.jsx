@@ -29,7 +29,7 @@ function PersonalData() {
         <b className="title">Persönliche Daten</b>
       </h1>
       <div className="title-description">
-        Bitte tragen Sie hier Ihre Kontaktdaten ein.
+        Bitte tragen Sie hier Ihre persönliche Daten ein.
       </div>
       <div className="margin-body">
         <div className="row">

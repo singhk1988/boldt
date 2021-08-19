@@ -58,7 +58,7 @@ function Home() {
           {body}
           <br />
           <div className="actions">
-            <Button onClick={onClickReturn}>Return</Button>
+            <Button onClick={onClickReturn}>Zurück</Button>
             <Button
               className="home-continue-button"
               style={{
@@ -69,7 +69,7 @@ function Home() {
               onClick={onClickContinue}
               variant="primary"
             >
-              Continue
+              Weiter
             </Button>
           </div>
           <br />

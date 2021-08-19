@@ -2,7 +2,13 @@
   text-align: center;
 }
 
+<<<<<<< HEAD
 
+=======
+body{
+  background-color: #eff3f5;
+}
+>>>>>>> 27800a4cb14d4470e077af49ae0a81bcd34e0753
 
 .App-logo {
   height: 40vmin;
