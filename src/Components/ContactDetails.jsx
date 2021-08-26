@@ -87,7 +87,6 @@ function ContactDetails() {
           </div>
           <div className="row">
             <div className="col-md-6">
-              {" "}
               <TextField
                 name="straße"
                 label="Straße und Hausnummer"
