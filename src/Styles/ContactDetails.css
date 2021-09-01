@@ -3,10 +3,12 @@
 }
 
 .postal-code {
-    flex: 2;
+  flex: 2;
 }
 
 .postal-location {
-    flex: 5;
-    margin-left: 8px;
+  flex: 5;
+  margin-left: 8px;
 }
+
+/* Rahul Test */
