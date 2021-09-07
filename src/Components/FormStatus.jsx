@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import logo from "./Logo.jpeg";
-import { Step, Stepper } from "@cimpress/react-components";
+import { Stepper } from "@cimpress/react-components";
 import { css } from "emotion";
+import { Steps } from "antd";
+import { CheckCircleTwoTone } from "@ant-design/icons";
+import { ReactComponent as Circle } from "../assets/svg/circle.svg";
 const checkmarkIcon = "✓";
-
+const { Step } = Steps;
 const getIcon = (activeStep, stepIndext) => {
-  return activeStep > stepIndext ? checkmarkIcon : null;
+  return activeStep > stepIndext ? <CheckCircleTwoTone /> : null;
 };
 const stepperStyle = css({
   height: "350px",
@@ -23,7 +26,7 @@ function FormStatus({ activeStep, setVerticalStep }) {
       />
       <div className="formStatus-stepper">
         <div className={stepperStyle}>
-          <Stepper activeStep={activeStep} vertical>
+          {/* <Steps activeStep={activeStep} direction="vertical">
             <Step onClick={setVerticalStep} icon={getIcon(activeStep, 0)}>
               <div>Kontaktdaten</div>
             </Step>
@@ -38,7 +41,9 @@ function FormStatus({ activeStep, setVerticalStep }) {
               <div>Berufliche Daten</div>
             </Step>
             <Step onClick={setVerticalStep} icon={getIcon(activeStep, 3)}>
-              <div className="formStatus-text">Steuerliche Daten und Bankverbindung</div>
+              <div className="formStatus-text">
+                Steuerliche Daten und Bankverbindung
+              </div>
             </Step>
             <Step onClick={setVerticalStep} icon={getIcon(activeStep, 4)}>
               <div>Familienstand</div>
@@ -49,7 +54,47 @@ function FormStatus({ activeStep, setVerticalStep }) {
             <Step onClick={setVerticalStep} icon={getIcon(activeStep, 6)}>
               <div>Dankeschön</div>
             </Step>
-          </Stepper>
+          </Steps> */}
+
+          <Steps direction="vertical" current={activeStep} size="small">
+            <Step
+              title="Kontaktdaten"
+              icon={getIcon(activeStep, 0)}
+              onClick={setVerticalStep}
+            />
+            <Step
+              title="Persönliche Daten"
+              onClick={setVerticalStep}
+              icon={getIcon(activeStep, 1)}
+            />
+            <Step
+              onClick={setVerticalStep}
+              title="Berufliche Daten"
+              tip="Lorem ipsum tipsum"
+              icon={getIcon(activeStep, 2)}
+            />
+            <Step
+              title="Steuerliche Daten und Bankverbindung"
+              onClick={setVerticalStep}
+              icon={getIcon(activeStep, 3)}
+            />
+
+            <Step
+              title="Familienstand"
+              onClick={setVerticalStep}
+              icon={getIcon(activeStep, 4)}
+            />
+            <Step
+              title="Daten Ihrer Kinder"
+              onClick={setVerticalStep}
+              icon={getIcon(activeStep, 5)}
+            />
+            <Step
+              title="Dankeschön"
+              onClick={setVerticalStep}
+              icon={getIcon(activeStep, 6)}
+            />
+          </Steps>
         </div>
       </div>
     </div>
