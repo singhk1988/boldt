@@ -5,6 +5,8 @@ import FormStatus from "./FormStatus";
 import ContactDetails from "./ContactDetails";
 import PersonalData from "./PersonalData";
 import CompanyData from "./CompanyData";
+import ThankPage from "./ThankPage";
+
 const maxStep = 8;
 
 function Home() {
@@ -27,6 +29,8 @@ function Home() {
     body = <PersonalData />;
   } else if (activeStep === 2) {
     body = <CompanyData />;
+  } else if (activeStep === 6) {
+    body = <ThankPage />;
   }
 
   const onClickContinue = () => {
