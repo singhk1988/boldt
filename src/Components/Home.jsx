@@ -29,11 +29,9 @@ function Home() {
     body = <PersonalData />;
   } else if (activeStep === 2) {
     body = <CompanyData />;
+  } else if (activeStep === 6) {
+    body = <ThankPage />;
   }
-  else if( activeStep === 6){
-    body= <ThankPage />
-  }
-  
 
   const onClickContinue = () => {
     const nextStep = activeStep + 1;
