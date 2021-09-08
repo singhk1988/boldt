@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@cimpress/react-components";
+import Marital from "./Marital";
 
 import FormStatus from "./FormStatus";
 import ContactDetails from "./ContactDetails";
@@ -27,6 +28,8 @@ function Home() {
     body = <PersonalData />;
   } else if (activeStep === 2) {
     body = <CompanyData />;
+  } else if (activeStep == 4) {
+    body = <Marital />;
   }
 
   const onClickContinue = () => {
