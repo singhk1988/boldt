@@ -25,7 +25,18 @@ function CompanyData() {
     iban: "",
     bic: "",
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    firmensitz: { error: "", status: "" },
+    ustID: { error: "", status: "" },
+    homepage: { error: "", status: "" },
+    steuernummer: { error: "", status: "" },
+    finanzamt: { error: "", status: "" },
+    konto: { error: "", status: "" },
+    blz: { error: "", status: "" },
+    bank: { error: "", status: "" },
+    iban: { error: "", status: "" },
+    bic: { error: "", status: "" },
+  });
   const [show, setShow] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,6 +57,31 @@ function CompanyData() {
 
   const onChangeEmploye = (e, value) => {
     setEmployment(value);
+  };
+
+  const onBlur = (e) => {
+    const { name, value } = e.target;
+    if (name === "firmensitz") {
+      if (value === "") {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
+      } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
+        setErrors(...errors, { error: `${name} not valid`, status: "error" });
+      } else {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
+      }
+    } else if (name === "ustID") {
+      console.log("Here::::");
+      if (value === "") {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
+      } else if (!/^(DE|[0-9]*)$/.test(value)) {
+        setErrors({
+          ...errors,
+          [name]: { error: `${name} not valid`, status: "error" },
+        });
+      } else {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
+      }
+    }
   };
 
   return (
@@ -80,17 +116,18 @@ function CompanyData() {
                   className="form-textbox"
                   value={values.geschäftsgründungsdatum}
                   onChange={(d) => {
+                    console.log(`object ::`, d);
                     setValues({ ...values, geschäftsgründungsdatum: d });
                   }}
                 />
               </div>
               <div className="col-md-6">
-                {" "}
                 <TextField
                   name="firmensitz"
                   label="Firmensitz"
                   value={values.firmensitz}
                   onChange={(e) => handleChange(e)}
+                  onBlur={onBlur}
                 />
               </div>
             </div>
@@ -103,6 +140,9 @@ function CompanyData() {
                   maxLength="11"
                   value={values.ustID}
                   onChange={(e) => handleChange(e)}
+                  onBlur={onBlur}
+                  helpText={errors.ustID.error}
+                  status={errors.ustID.status}
                   // rightAddon={(
                   //   <Tooltip direction="top" contents="Please enter the value" show={show}>
                   //   <Button onClick={onClickShow}>
@@ -119,6 +159,7 @@ function CompanyData() {
                   label="Homepage"
                   value={values.homepage}
                   onChange={(e) => handleChange(e)}
+                  onBlur={onBlur}
                 />
               </div>
             </div>
@@ -130,6 +171,7 @@ function CompanyData() {
                   maxLength="13"
                   value={values.steuernummer}
                   onChange={(e) => handleChange(e)}
+                  onBlur={onBlur}
                 />
               </div>
               <div className="col-md-6">
@@ -138,6 +180,7 @@ function CompanyData() {
                   label="Finanzamt"
                   value={values.finanzamt}
                   onChange={(e) => handleChange(e)}
+                  onBlur={onBlur}
                 />
               </div>
             </div>
@@ -149,6 +192,7 @@ function CompanyData() {
                   maxLength="10"
                   value={values.konto}
                   onChange={(e) => handleChange(e)}
+                  onBlur={onBlur}
                 />
               </div>
               <div className="col-md-6">
@@ -158,6 +202,7 @@ function CompanyData() {
                   maxLength="10"
                   value={values.blz}
                   onChange={(e) => handleChange(e)}
+                  onBlur={onBlur}
                 />
               </div>
             </div>
@@ -168,6 +213,7 @@ function CompanyData() {
                   label="Bank"
                   value={values.bank}
                   onChange={(e) => handleChange(e)}
+                  onBlur={onBlur}
                 />
               </div>
               <div className="col-md-6">
@@ -177,6 +223,7 @@ function CompanyData() {
                   maxLength="22"
                   value={values.iban}
                   onChange={(e) => handleChange(e)}
+                  onBlur={onBlur}
                 />
               </div>
             </div>
@@ -187,6 +234,7 @@ function CompanyData() {
                   label="BIC"
                   value={values.bic}
                   onChange={(e) => handleChange(e)}
+                  onBlur={onBlur}
                 />
               </div>
             </div>
