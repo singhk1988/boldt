@@ -19,6 +19,93 @@ function BankDetails(){
         
       });
 
+      const [finanzamt, setfinanzamt]=useState({ error: "", status: "" });
+      const [bank, setbank]=useState({ error: "", status: "" });
+      const [konto, setkonto]=useState({ error: "", status: "" });
+      const [blz, setblz]=useState({ error: "", status: "" });
+    const onBlur = (e) => {
+        const { name, value } = e.target;
+        if (name === "finanzamt") {
+                        
+            if(value === "") {
+                setfinanzamt({
+                status: "",
+                error: "",
+                });
+            
+            } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
+                setfinanzamt({
+                status: "error",
+                error: "finanzamt not valid",
+                });
+            } else {
+                setfinanzamt({
+                status: "",
+                error: "",
+                });
+            }
+        }
+        if (name === "bank") {
+                        
+            if(value === "") {
+                setbank({
+                status: "",
+                error: "",
+                });
+            
+            } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
+                setbank({
+                status: "error",
+                error: "bank not valid",
+                });
+            } else {
+                setbank({
+                status: "",
+                error: "",
+                });
+            }
+        }
+        if (name === "konto") {
+                        
+            if(value === "") {
+                setkonto({
+                status: "",
+                error: "",
+                });
+            
+            } else if (!/^\s*-?[0-9]{1,10}\s*$/.test(value)) {
+                setkonto({
+                status: "error",
+                error: "konto not valid",
+                });
+            } else {
+                setkonto({
+                status: "",
+                error: "",
+                });
+            }
+        }
+        if (name === "konto") {
+        if(value === "") {
+            setblz({
+            status: "",
+            error: "",
+            });
+        
+        } else if (!/^\s*-?[0-9]{1,10}\s*$/.test(value)) {
+            setblz({
+            status: "error",
+            error: "blz not valid",
+            });
+        } else {
+            setblz({
+            status: "",
+            error: "",
+            });
+        }
+    }
+    }
+
     const handleInput = (e) => {
         const { name, value } = e.target;
         setInput({
@@ -66,7 +153,11 @@ function BankDetails(){
                     name="finanzamt" 
                     value={input.finanzamt}  
                     className="customInput"
-                    onChange={(e) => handleInput(e)}/>
+                    onChange={(e) => handleInput(e)}
+                    onBlur={onBlur}
+                    helpText={finanzamt.error}
+                    status={finanzamt.status}
+                    />
                 </div>
                 <div className="col-md-6">
                 <TextField 
@@ -102,7 +193,11 @@ function BankDetails(){
                     name="bank" 
                     value={input.bank}  
                     className="customInput"
-                    onChange={(e) => handleInput(e)}/>
+                    onChange={(e) => handleInput(e)}
+                    onBlur={onBlur}
+                    helpText={bank.error}
+                    status={bank.status}
+                    />
                 </div>
                 <div className="col-md-6">
                 <TextField 
@@ -120,7 +215,12 @@ function BankDetails(){
                     name="konto" 
                     value={input.konto}  
                     className="customInput"
-                    onChange={(e) => handleInput(e)}/>
+                    onChange={(e) => handleInput(e)}
+                    onBlur={onBlur}
+                    helpText={konto.error}
+                    status={konto.status}
+                    />
+
                 </div>
                 <div className="col-md-6">
                 <TextField 
@@ -128,7 +228,11 @@ function BankDetails(){
                     name="blz" 
                     value={input.blz}  
                     className="customInput"
-                    onChange={(e) => handleInput(e)}/>
+                    onChange={(e) => handleInput(e)}
+                    onBlur={onBlur}
+                    helpText={blz.error}
+                    status={blz.status}
+                    />
                 </div>
             </div>
         </div>    
