@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@cimpress/react-components";
+import Marital from "./Marital";
 
 import FormStatus from "./FormStatus";
 import ContactDetails from "./ContactDetails";
@@ -36,6 +37,8 @@ function Home() {
     
   } else if (activeStep === 5) {
     body = <ChildData />;
+  } else if (activeStep == 4) {
+    body = <Marital />;
   } else if (activeStep === 6) {
     body = <ThankPage />;
   }

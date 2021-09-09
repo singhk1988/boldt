@@ -7,6 +7,7 @@ import './Styles/FormStatus.css';
 import './Styles/PersonalData.css';
 import './Styles/CompanyData.css';
 import "antd/dist/antd.css";
+import './Styles/Marital.css';
 
 function App() {
   return (
