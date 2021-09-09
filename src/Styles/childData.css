@@ -1,0 +1,23 @@
+.pd{
+    padding-bottom: 6px;
+}
+
+.pl{
+    padding-left: 6px;
+}
+
+.fontW{
+    font-weight: 400;
+}
+.dropItem{
+    width:208px;
+}
+
+.customInput{
+    height: 2.5pc;
+    margin-bottom: 12px;
+}
+
+.col-md-4 {
+    margin-bottom: 10px;
+}
