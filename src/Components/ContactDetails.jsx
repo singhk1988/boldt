@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@cimpress/react-components";
 import validate from "./ValidateData";
+import { Input } from "antd";
 
 function ContactDetails() {
   const [values, setValues] = useState({
@@ -15,7 +16,12 @@ function ContactDetails() {
   });
 
   const [email, setEmail] = useState({ error: "", status: "" });
-
+  const [vorname, setVorname] = useState({ error: "", status: "" });
+  const [nachname, setNachname] = useState({ error: "", status: "" });
+  const [address, setAddress] = useState({ error: "", status: "" });
+  const [plz, setplz] = useState({ error: "", status: "" });
+  const [location, setlocation] = useState({ error: "", status: "" });
+  const [telefex, setTelefex] = useState({ error: "", status: "" });
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -25,6 +31,11 @@ function ContactDetails() {
       [name]: value,
     });
   };
+
+  // const onError = (e) => {
+  //   const { name, value } = e.target;
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors(validate(values));
@@ -32,25 +43,125 @@ function ContactDetails() {
 
   const onBlur = (e) => {
     const { name, value } = e.target;
-    if (value === "") {
-      setEmail({
-        status: "",
-        error: "",
-      });
-      return;
-    }
     if (name === "email") {
-      if (!/\S+@\S+\.\S+/.test(value)) {
-        setEmail({
-          status: "error",
-          error: "Bitte geben Sie eine gültige Email-Adresse ein",
-        });
-      }else {
+      if (value === "") {
         setEmail({
           status: "",
           error: "",
         });
-    } 
+      } else if (!/\S+@\S+\.\S+/.test(value)) {
+        setEmail({
+          status: "error",
+          error: "Bitte geben Sie eine gültige Email-Adresse ein",
+        });
+      } else {
+        setEmail({
+          status: "",
+          error: "",
+        });
+      }
+    } else if (name === "vorname") {
+      if (value === "") {
+        setVorname({
+          status: "",
+          error: "",
+        });
+      } else if (!/^[a-zA-Z]+$/.test(value)) {
+        setVorname({
+          status: "error",
+          error: "vorname not valid",
+        });
+      } else {
+        setVorname({
+          status: "",
+          error: "",
+        });
+      }
+    } else if (name === "nachname") {
+      if (value === "") {
+        setNachname({
+          status: "",
+          error: "",
+        });
+      } else if (!/^[a-zA-Z]+$/.test(value)) {
+        setNachname({
+          status: "error",
+          error: "nachname not valid",
+        });
+      } else {
+        setNachname({
+          status: "",
+          error: "",
+        });
+      }
+    } else if (name === "straße") {
+      if (value === "") {
+        setAddress({
+          status: "",
+          error: "",
+        });
+      } else if (!/^[a-zA-Z0-9]+$/.test(value)) {
+        setAddress({
+          status: "error",
+          error: "address not valid",
+        });
+      } else {
+        setAddress({
+          status: "",
+          error: "",
+        });
+      }
+    } else if (name === "plz") {
+      if (value === "") {
+        setplz({
+          status: "",
+          error: "",
+        });
+      } else if (!/\b\d{5}\b/g.test(value)) {
+        setplz({
+          status: "error",
+          error: "please enter valid data",
+        });
+      } else {
+        setplz({
+          status: "",
+          error: "",
+        });
+      }
+    } else if (name === "ort") {
+      if (value === "") {
+        setlocation({
+          status: "",
+          error: "",
+        });
+      } else if (!/^[a-zA-Z]+$/.test(value)) {
+        setlocation({
+          status: "error",
+          error: "please enter valid data",
+        });
+      } else {
+        setlocation({
+          status: "",
+          error: "",
+        });
+      }
+    } else if (name === "telefax") {
+      if (value === "") {
+        setTelefex({
+          status: "",
+          error: "",
+        });
+      } else if (!/^[0-9+(-)-]+$/.test(value)) {
+        setTelefex({
+          status: "error",
+          error: "please enter valid data",
+        });
+      } else {
+        setTelefex({
+          status: "",
+          error: "",
+        });
+      }
     }
   };
 
@@ -69,31 +180,35 @@ function ContactDetails() {
               <TextField
                 name="vorname"
                 label="Vorname"
+                status={vorname.status}
                 value={values.vorname}
                 onChange={(e) => handleChange(e)}
-                helpText={errors.vorname}
+                helpText={vorname.error}
+                onBlur={onBlur}
               />
             </div>
             <div className="col-md-6">
-              {" "}
               <TextField
                 name="nachname"
                 label="Nachname"
+                status={nachname.status}
                 value={values.nachname}
                 onChange={(e) => handleChange(e)}
-                helpText={errors.nachname}
+                helpText={nachname.error}
+                onBlur={onBlur}
               />
             </div>
           </div>
           <div className="row">
             <div className="col-md-6">
-              {" "}
               <TextField
                 name="straße"
                 label="Straße und Hausnummer"
+                status={address.status}
                 value={values.straße}
                 onChange={(e) => handleChange(e)}
-                helpText={errors.straße}
+                helpText={address.error}
+                onBlur={onBlur}
               />
             </div>
 
@@ -101,20 +216,26 @@ function ContactDetails() {
               <TextField
                 className="postal-code"
                 name="plz"
+                // type="number"
                 label="PLZ"
+                minLength="5"
                 maxLength="5"
+                status={plz.status}
                 value={values.plz}
                 onChange={(e) => handleChange(e)}
-                helpText={errors.plz}
+                helpText={plz.error}
+                onBlur={onBlur}
               />
 
               <TextField
                 className="postal-location"
                 name="ort"
                 label="Ort"
+                status={location.status}
                 value={values.ort}
                 onChange={(e) => handleChange(e)}
-                helpText={errors.ort}
+                helpText={location.error}
+                onBlur={onBlur}
               />
             </div>
           </div>
@@ -135,8 +256,10 @@ function ContactDetails() {
                 name="telefax"
                 label="Telefax"
                 value={values.telefax}
+                status={telefex.status}
                 onChange={(e) => handleChange(e)}
-                helpText={errors.telefax}
+                helpText={telefex.error}
+                onBlur={onBlur}
               />
             </div>
           </div>

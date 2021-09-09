@@ -7,6 +7,7 @@ import PersonalData from "./PersonalData";
 import CompanyData from "./CompanyData";
 import ChildData from "./ChildData";
 import BankDetails from "./BankDetails"
+import ThankPage from "./ThankPage";
 
 const maxStep = 8;
 
@@ -35,6 +36,8 @@ function Home() {
     
   } else if (activeStep === 5) {
     body = <ChildData />;
+  } else if (activeStep === 6) {
+    body = <ThankPage />;
   }
     
 
