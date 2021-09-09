@@ -5,6 +5,9 @@ import FormStatus from "./FormStatus";
 import ContactDetails from "./ContactDetails";
 import PersonalData from "./PersonalData";
 import CompanyData from "./CompanyData";
+import ChildData from "./ChildData";
+import BankDetails from "./BankDetails"
+
 const maxStep = 8;
 
 function Home() {
@@ -27,7 +30,13 @@ function Home() {
     body = <PersonalData />;
   } else if (activeStep === 2) {
     body = <CompanyData />;
+  } else if (activeStep === 3) {
+    body = <BankDetails />;
+    
+  } else if (activeStep === 5) {
+    body = <ChildData />;
   }
+    
 
   const onClickContinue = () => {
     const nextStep = activeStep + 1;
