@@ -33,6 +33,7 @@ function PersonalData() {
   };
 
   const onBlur = (e) => {
+    console.log(e.target.name, `e::::`, e.target.value);
     const { name, value } = e.target;
     if (value === "") {
       setErrors({ ...errors, [name]: { error: "", status: "" } });

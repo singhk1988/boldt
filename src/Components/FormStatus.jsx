@@ -60,38 +60,44 @@ function FormStatus({ activeStep, setVerticalStep }) {
             <Step
               title="Kontaktdaten"
               icon={getIcon(activeStep, 0)}
-              onClick={setVerticalStep}
+              onClick={() => setVerticalStep(0)}
             />
             <Step
               title="Persönliche Daten"
-              onClick={setVerticalStep}
+              // onClick={setVerticalStep}
+              onClick={() => setVerticalStep(1)}
               icon={getIcon(activeStep, 1)}
             />
             <Step
-              onClick={setVerticalStep}
+              onClick={() => setVerticalStep(2)}
+              // onClick={setVerticalStep}
               title="Berufliche Daten"
               tip="Lorem ipsum tipsum"
               icon={getIcon(activeStep, 2)}
             />
             <Step
               title="Steuerliche Daten und Bankverbindung"
-              onClick={setVerticalStep}
+              // onClick={setVerticalStep}
+              onClick={() => setVerticalStep(3)}
               icon={getIcon(activeStep, 3)}
             />
 
             <Step
               title="Familienstand"
-              onClick={setVerticalStep}
+              onClick={() => setVerticalStep(4)}
+              // onClick={setVerticalStep}
               icon={getIcon(activeStep, 4)}
             />
             <Step
               title="Daten Ihrer Kinder"
-              onClick={setVerticalStep}
+              // onClick={setVerticalStep}
+              onClick={() => setVerticalStep(5)}
               icon={getIcon(activeStep, 5)}
             />
             <Step
               title="Dankeschön"
-              onClick={setVerticalStep}
+              // onClick={setVerticalStep}
+              onClick={() => setVerticalStep(6)}
               icon={getIcon(activeStep, 6)}
             />
           </Steps>
