@@ -12,7 +12,7 @@ import './Styles/Marital.css';
 function App() {
   return (
     <div className="App">
-       <Home />
+      <Home />
     </div>
   );
 }
