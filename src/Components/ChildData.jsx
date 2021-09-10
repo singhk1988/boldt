@@ -194,7 +194,7 @@ function ChildData() {
               onChange={handleRadio}
               name="radioTest"
               value={value}
-              onChange={onChangeEmploye}
+              // onChange={onChangeEmploye}
             >
               <Radio label="Ja" value={"Ja"} />
               <Radio label="Nein" value={"Nein"} />
@@ -209,7 +209,7 @@ function ChildData() {
             </Dropdown>
           </div>
         </div>
-        <Tabs defaultActiveJey="1" key="1">
+        <Tabs defaultActiveJey="1" key="1" type="card">
           <TabPane tab="Kinder 1" key="1" className="tabColor">
             <div className="row">
               <div className="col-md-4">
@@ -402,7 +402,7 @@ function ChildData() {
                 />
               </div>
               <div className="col-md-4">
-                <Dropdown title="Geschlecht" className="dropItem">
+                <Dropdown title="Geschlecht">
                   <Button>männlich</Button>
                   <Button>weiblich</Button>
                 </Dropdown>
@@ -429,7 +429,7 @@ function ChildData() {
                 />
               </div>
               <div className="col-md-4">
-                <Dropdown title="Familienstand" className="dropItem">
+                <Dropdown title="Familienstand">
                   <Button>ledig</Button>
                   <Button>verheiratet</Button>
                   <Button>geschieden</Button>

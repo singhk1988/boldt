@@ -5,6 +5,8 @@ import {
   RadioGroup,
   TextField,
 } from "@cimpress/react-components";
+import DatePicker from "@cimpress/react-components/lib/DatePicker";
+
 function Marital1() {
   const [input, setInput] = useState({
     Vorname: "",
@@ -21,182 +23,71 @@ function Marital1() {
     Religion: "",
     Identifikationsnummer: "",
     eTIN: "",
+    Familienstand: "Familienstand",
   });
 
-  const [Vorname, setVorname] = useState({ error: "", status: "" });
-  const [Nachname, setNachname] = useState({ error: "", status: "" });
-  const [Arbeitgeber, setArbeitgeber] = useState({ error: "", status: "" });
-  const [Religion, setReligion] = useState({ error: "", status: "" });
-  const [Geburtsort, setGeburtsort] = useState({ error: "", status: "" });
-  const [Geburtsname, setGeburtsname] = useState({ error: "", status: "" });
-  const [Geburtsland, setGeburtsland] = useState({ error: "", status: "" });
-  const [Staatsangehörigkeit, setStaatsangehörigkeit] = useState({
-    error: "",
-    status: "",
+  const [errors, setError] = useState({
+    Vorname: { error: "", status: "" },
+    Nachname: { error: "", status: "" },
+    Geburtsdatum: { error: "", status: "" },
+    Geburtsort: { error: "", status: "" },
+    Geburtsname: { error: "", status: "" },
+    Geburtsland: { error: "", status: "" },
+    Staatsangehörigkeit: { error: "", status: "" },
+    Beruf: { error: "", status: "" },
+    Arbeitgeber: { error: "", status: "" },
+    Rentenversicherungsnummer: { error: "", status: "" },
+    Rentenversicherungsträger: { error: "", status: "" },
+    Religion: { error: "", status: "" },
+    Identifikationsnummer: { error: "", status: "" },
+    eTIN: { error: "", status: "" },
   });
-  const [Beruf, setBeruf] = useState({ error: "", status: "" });
+
   const onBlur = (e) => {
     const { name, value } = e.target;
-    if (name === "Vorname") {
+    if (
+      name === "Vorname" ||
+      name === "Nachname" ||
+      name === "Arbeitgeber" ||
+      name === "Religion"
+    ) {
       if (value === "") {
-        setVorname({
-          status: "",
-          error: "",
-        });
+        setError({ ...errors, [name]: { error: "", status: "" } });
       } else if (!/^[a-zA-Z]+$/.test(value)) {
-        setVorname({
-          status: "error",
-          error: "vorname not valid",
+        setError({
+          ...errors,
+          [name]: { error: `${name} not valid`, status: "error" },
         });
       } else {
-        setVorname({
-          status: "",
-          error: "",
-        });
+        setError({ ...errors, [name]: { error: "", status: "" } });
       }
-    }
-    if (name === "Nachname") {
+    } else if (
+      name === "Geburtsort" ||
+      name === "Geburtsname" ||
+      name === "Geburtsland" ||
+      name === "Staatsangehörigkeit" ||
+      name === "Beruf"
+    ) {
       if (value === "") {
-        setNachname({
-          status: "",
-          error: "",
-        });
-      } else if (!/^[a-zA-Z]+$/.test(value)) {
-        setNachname({
-          status: "error",
-          error: "Nachname not valid",
-        });
-      } else {
-        setNachname({
-          status: "",
-          error: "",
-        });
-      }
-    }
-    if (name === "Arbeitgeber") {
-      if (value === "") {
-        setArbeitgeber({
-          status: "",
-          error: "",
-        });
-      } else if (!/^[a-zA-Z]+$/.test(value)) {
-        setArbeitgeber({
-          status: "error",
-          error: "Arbeitgeber not valid",
-        });
-      } else {
-        setArbeitgeber({
-          status: "",
-          error: "",
-        });
-      }
-    }
-    if (name === "Religion") {
-      if (value === "") {
-        setReligion({
-          status: "",
-          error: "",
-        });
-      } else if (!/^[a-zA-Z]+$/.test(value)) {
-        setReligion({
-          status: "error",
-          error: "Religion not valid",
-        });
-      } else {
-        setReligion({
-          status: "",
-          error: "",
-        });
-      }
-    }
-    if (name === "Geburtsort") {
-      if (value === "") {
-        setGeburtsort({
-          status: "",
-          error: "",
-        });
+        setError({ ...errors, [name]: { error: "", status: "" } });
       } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
-        setGeburtsort({
-          status: "error",
-          error: "Geburtsort not valid",
+        setError({
+          ...errors,
+          [name]: { error: `${name} not valid`, status: "error" },
         });
       } else {
-        setGeburtsort({
-          status: "",
-          error: "",
-        });
+        setError({ ...errors, [name]: { error: "", status: "" } });
       }
-    }
-    if (name === "Geburtsname") {
+    } else if (name === "Identifikationsnummer") {
       if (value === "") {
-        setGeburtsname({
-          status: "",
-          error: "",
-        });
-      } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
-        setGeburtsname({
-          status: "error",
-          error: "Geburtsname not valid",
+        setError({ ...errors, [name]: { error: "", status: "" } });
+      } else if (!/^[1-9]{1}[0-9]{10}$/.test(value)) {
+        setError({
+          ...errors,
+          [name]: { error: `${name} not valid`, status: "error" },
         });
       } else {
-        setGeburtsname({
-          status: "",
-          error: "",
-        });
-      }
-    }
-    if (name === "Geburtsland") {
-      if (value === "") {
-        setGeburtsland({
-          status: "",
-          error: "",
-        });
-      } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
-        setGeburtsland({
-          status: "error",
-          error: "Geburtsland not valid",
-        });
-      } else {
-        setGeburtsland({
-          status: "",
-          error: "",
-        });
-      }
-    }
-    if (name === "Staatsangehörigkeit") {
-      if (value === "") {
-        setStaatsangehörigkeit({
-          status: "",
-          error: "",
-        });
-      } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
-        setStaatsangehörigkeit({
-          status: "error",
-          error: "Staatsangehörigkeit not valid",
-        });
-      } else {
-        setStaatsangehörigkeit({
-          status: "",
-          error: "",
-        });
-      }
-    }
-    if (name === "Beruf") {
-      if (value === "") {
-        setBeruf({
-          status: "",
-          error: "",
-        });
-      } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
-        setBeruf({
-          status: "error",
-          error: "Beruf not valid",
-        });
-      } else {
-        setBeruf({
-          status: "",
-          error: "",
-        });
+        setError({ ...errors, [name]: { error: "", status: "" } });
       }
     }
   };
@@ -221,9 +112,21 @@ function Marital1() {
         <div className="margin-body">
           <div className="row">
             <div className="col-md-6">
-              <Dropdown title="Familienstand">
-                <button>Married</button>
-                <button>UnMarried</button>
+              <Dropdown title={input.Familienstand}>
+                <button
+                  onClick={() =>
+                    setInput({ ...input, Familienstand: "Married" })
+                  }
+                >
+                  Married
+                </button>
+                <button
+                  onClick={() =>
+                    setInput({ ...input, Familienstand: "Unmarried" })
+                  }
+                >
+                  UnMarried
+                </button>
               </Dropdown>
             </div>
             <div className="col-md-6">
@@ -248,8 +151,8 @@ function Marital1() {
                 value={input.Vorname}
                 onChange={(e) => handleInput(e)}
                 onBlur={onBlur}
-                helpText={Vorname.error}
-                status={Vorname.status}
+                helpText={errors.Vorname.error}
+                status={errors.Vorname.status}
               />
             </div>
             <div className="col-md-4">
@@ -260,24 +163,21 @@ function Marital1() {
                 name="Nachname"
                 value={input.Nachname}
                 onChange={(e) => handleInput(e)}
-                status={Nachname.status}
-                helpText={Nachname.error}
+                status={errors.Nachname.status}
+                helpText={errors.Nachname.error}
                 onBlur={onBlur}
               />
             </div>
             <div className="col-md-4">
-              <TextField
+              <DatePicker
                 dateFormat="DD/MM/YYYY"
-                type="text"
-                id="pad"
-                label="Geburtsdatum"
-                name="Geburtsdatum"
+                placeholder="Geburtsdatum"
+                className="form-textbox"
                 value={input.Geburtsdatum}
-                onChange={(e) => handleInput(e)}
-                // onChange={(d) => {
-                //   let selectedDate = d.format("DD/MM/YYYY");
-                //   setInput({ ...input, Geburtsdatum: selectedDate });
-                // }}
+                name="Geburtsdatum"
+                onChange={(d) => {
+                  setInput({ ...input, Geburtsdatum: d });
+                }}
               />
             </div>
           </div>
@@ -292,8 +192,8 @@ function Marital1() {
                 value={input.Geburtsort}
                 onChange={(e) => handleInput(e)}
                 onBlur={onBlur}
-                helpText={Geburtsort.error}
-                status={Geburtsort.status}
+                helpText={errors.Geburtsort.error}
+                status={errors.Geburtsort.status}
               />
             </div>
             <div className="col-md-4">
@@ -305,8 +205,8 @@ function Marital1() {
                 value={input.Geburtsname}
                 onChange={(e) => handleInput(e)}
                 onBlur={onBlur}
-                helpText={Geburtsname.error}
-                status={Geburtsname.status}
+                helpText={errors.Geburtsname.error}
+                status={errors.Geburtsname.status}
               />
             </div>
             <div className="col-md-4">
@@ -318,8 +218,8 @@ function Marital1() {
                 value={input.Geburtsland}
                 onChange={(e) => handleInput(e)}
                 onBlur={onBlur}
-                helpText={Geburtsland.error}
-                status={Geburtsland.status}
+                helpText={errors.Geburtsland.error}
+                status={errors.Geburtsland.status}
               />
             </div>
           </div>
@@ -335,8 +235,8 @@ function Marital1() {
               value={input.Staatsangehörigkeit}
               onChange={(e) => handleInput(e)}
               onBlur={onBlur}
-              helpText={Staatsangehörigkeit.error}
-              status={Staatsangehörigkeit.status}
+              helpText={errors.Staatsangehörigkeit.error}
+              status={errors.Staatsangehörigkeit.status}
             />
           </div>
           <div className="col-md-4">
@@ -348,8 +248,8 @@ function Marital1() {
               value={input.Beruf}
               onChange={(e) => handleInput(e)}
               onBlur={onBlur}
-              helpText={Beruf.error}
-              status={Beruf.status}
+              helpText={errors.Beruf.error}
+              status={errors.Beruf.status}
             />
           </div>
           <div className="col-md-4">
@@ -361,8 +261,8 @@ function Marital1() {
               value={input.Arbeitgeber}
               onChange={(e) => handleInput(e)}
               onBlur={onBlur}
-              helpText={Arbeitgeber.error}
-              status={Arbeitgeber.status}
+              helpText={errors.Arbeitgeber.error}
+              status={errors.Arbeitgeber.status}
             />
           </div>
         </div>
@@ -409,6 +309,10 @@ function Marital1() {
               name="Identifikationsnummer"
               value={input.Identifikationsnummer}
               onChange={(e) => handleInput(e)}
+              maxLength={11}
+              status={errors.Identifikationsnummer.status}
+              onBlur={onBlur}
+              helpText={errors.Identifikationsnummer.error}
             />
           </div>
 
@@ -421,8 +325,8 @@ function Marital1() {
               value={input.Religion}
               onChange={(e) => handleInput(e)}
               onBlur={onBlur}
-              helpText={Religion.error}
-              status={Religion.status}
+              helpText={errors.Religion.error}
+              status={errors.Religion.status}
             />
           </div>
         </div>
