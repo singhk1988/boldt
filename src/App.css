@@ -2,8 +2,8 @@
   text-align: center;
 }
 
-body{
-  background-color: #F5F9FF !important;
+body {
+  background-color: #f5f9ff !important;
 }
 
 .App-logo {
@@ -41,6 +41,36 @@ body{
   }
 }
 
-body{
+body {
   background-color: #eff3f5;
+}
+
+.btn.dropdown-toggle {
+  color: #8090a2 !important;
+  background-color: #fff !important;
+  border: 1px solid #c4cdd6 !important;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 13px;
+  border-radius: 5px;
+}
+
+.btn {
+  font-weight: normal;
+}
+
+.ant-tabs {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: "tnum", "tnum";
+  display: flex;
+  overflow: visible;
+  margin-top: 20px;
 }

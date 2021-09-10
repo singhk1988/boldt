@@ -1,128 +1,128 @@
-import React, { useState } from 'react'
-import { Tabs, TabPane } from 'antd'
+import React, { useState } from "react";
+import { Tabs, TabPane } from "antd";
 import {
   Dropdown,
   Button,
   TextField,
   Radio,
   RadioGroup,
-} from '@cimpress/react-components'
-import '../Styles/childData.css'
+} from "@cimpress/react-components";
+import "../Styles/childData.css";
 
 function ChildData() {
-  const [employment, setEmployment] = useState('Arbeitnehmer')
+  const [employment, setEmployment] = useState("Arbeitnehmer");
 
-  const [dropValue, setDropValue] = useState({})
-  const [value, setRadio] = useState({})
+  const [dropValue, setDropValue] = useState({});
+  const [value, setRadio] = useState({});
   const [input, setInput] = useState({
-    Vorname: '',
-    Nachname: '',
-    Geburtsdatum: '',
-    Geburtsort: '',
-    Geburtsname: '',
-    Geschlecht: '',
-    Religion: '',
-    KindschaftsverhältnisSteuerpfl: '',
-    Ausbildungsstand: '',
-    Identifikationsnummer: '',
-    eTIN: '',
-  })
+    Vorname: "",
+    Nachname: "",
+    Geburtsdatum: "",
+    Geburtsort: "",
+    Geburtsname: "",
+    Geschlecht: "",
+    Religion: "",
+    KindschaftsverhältnisSteuerpfl: "",
+    Ausbildungsstand: "",
+    Identifikationsnummer: "",
+    eTIN: "",
+  });
   const [errors, setErrors] = useState({
-    vorname: { error: '', status: '' },
-    nachname: { error: '', status: '' },
-    geburtsdatum: { error: '', status: '' },
-    geburtsort: { error: '', status: '' },
-    geburtsname: { error: '', status: '' },
-    geschlecht: { error: '', status: '' },
-    religion: { error: '', status: '' },
-    kindschaftsverhältnisSteuerpfl: { error: '', status: '' },
-    ausbildungsstand: { error: '', status: '' },
-    identifikationsnummer: { error: '', status: '' },
-    eTIN: { error: '', status: '' },
-  })
-  const { TabPane } = Tabs
+    vorname: { error: "", status: "" },
+    nachname: { error: "", status: "" },
+    geburtsdatum: { error: "", status: "" },
+    geburtsort: { error: "", status: "" },
+    geburtsname: { error: "", status: "" },
+    geschlecht: { error: "", status: "" },
+    religion: { error: "", status: "" },
+    kindschaftsverhältnisSteuerpfl: { error: "", status: "" },
+    ausbildungsstand: { error: "", status: "" },
+    identifikationsnummer: { error: "", status: "" },
+    eTIN: { error: "", status: "" },
+  });
+  const { TabPane } = Tabs;
   const handleRadio = (e) => {
-    setRadio(e.target.value)
-  }
+    setRadio(e.target.value);
+  };
   const handleInput = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setInput({
       ...input,
       [name]: value,
-    })
-  }
+    });
+  };
   const handleMenuClick = (e) => {
-    setDropValue(e.target.value)
-  }
+    setDropValue(e.target.value);
+  };
   const onChangeEmploye = (e, value) => {
-    setEmployment(value)
-  }
+    setEmployment(value);
+  };
 
   const onBlur = (e) => {
-    const { name, value } = e.target
-    if (name === 'vorname') {
-      if (value === '') {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+    const { name, value } = e.target;
+    if (name === "vorname") {
+      if (value === "") {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
         // setErrors(...errors, { error: `${name} not valid`, status: 'error' })
         setErrors({
           ...errors,
-          [name]: { error: `${name} not valid`, status: 'error' },
-        })
+          [name]: { error: `${name} not valid`, status: "error" },
+        });
       } else {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       }
-    } else if (name === 'nachname') {
-      console.log('Here::::')
-      if (value === '') {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+    } else if (name === "nachname") {
+      console.log("Here::::");
+      if (value === "") {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
         setErrors({
           ...errors,
-          [name]: { error: `${name} not valid`, status: 'error' },
-        })
+          [name]: { error: `${name} not valid`, status: "error" },
+        });
       } else {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       }
-    } else if (name === 'geburtsdatum') {
-      console.log('Here::::')
-      if (value === '') {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+    } else if (name === "geburtsdatum") {
+      console.log("Here::::");
+      if (value === "") {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       } else if (
         !/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/.test(
-          value,
+          value
         )
       ) {
         setErrors({
           ...errors,
-          [name]: { error: `${name} not valid`, status: 'error' },
-        })
+          [name]: { error: `${name} not valid`, status: "error" },
+        });
       } else {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       }
-    } else if (name === 'geburtsort') {
-      console.log('Here::::')
-      if (value === '') {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+    } else if (name === "geburtsort") {
+      console.log("Here::::");
+      if (value === "") {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
         setErrors({
           ...errors,
-          [name]: { error: `${name} not valid`, status: 'error' },
-        })
+          [name]: { error: `${name} not valid`, status: "error" },
+        });
       } else {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       }
-    } else if (name === 'geburtsname') {
-      console.log('Here::::')
-      if (value === '') {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+    } else if (name === "geburtsname") {
+      console.log("Here::::");
+      if (value === "") {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
         setErrors({
           ...errors,
-          [name]: { error: `${name} not valid`, status: 'error' },
-        })
+          [name]: { error: `${name} not valid`, status: "error" },
+        });
       } else {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       }
     }
 
@@ -141,44 +141,41 @@ function ChildData() {
     //     setErrors({ ...errors, [name]: { error: '', status: '' } })
     //   }
     // }
-    else if (name === 'religion') {
-      console.log('Here::::')
-      if (value === '') {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+    else if (name === "religion") {
+      if (value === "") {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
         setErrors({
           ...errors,
-          [name]: { error: `${name} not valid`, status: 'error' },
-        })
+          [name]: { error: `${name} not valid`, status: "error" },
+        });
       } else {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       }
-    } else if (name === 'ausbildungsstand') {
-      console.log('Here::::')
-      if (value === '') {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+    } else if (name === "ausbildungsstand") {
+      if (value === "") {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
         setErrors({
           ...errors,
-          [name]: { error: `${name} not valid`, status: 'error' },
-        })
+          [name]: { error: `${name} not valid`, status: "error" },
+        });
       } else {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       }
-    } else if (name === 'identifikationsnummer') {
-      console.log('Here::::')
-      if (value === '') {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+    } else if (name === "identifikationsnummer") {
+      if (value === "") {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       } else if (!/^([1-9][0-9]*)|([0]+)$/.test(value)) {
         setErrors({
           ...errors,
-          [name]: { error: `${name} not valid`, status: 'error' },
-        })
+          [name]: { error: `${name} not valid`, status: "error" },
+        });
       } else {
-        setErrors({ ...errors, [name]: { error: '', status: '' } })
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
       }
     }
-  }
+  };
 
   return (
     <div className="personalData" align="left">
@@ -197,10 +194,10 @@ function ChildData() {
               onChange={handleRadio}
               name="radioTest"
               value={value}
-              onChange={onChangeEmploye}
+              // onChange={onChangeEmploye}
             >
-              <Radio label="Ja" value={'Ja'} />
-              <Radio label="Nein" value={'Nein'} />
+              <Radio label="Ja" value={"Ja"} />
+              <Radio label="Nein" value={"Nein"} />
             </RadioGroup>
           </div>
           <div className="col-md-6">
@@ -212,26 +209,28 @@ function ChildData() {
             </Dropdown>
           </div>
         </div>
-        <Tabs defaultActiveJey="1" key="1">
+        <Tabs defaultActiveJey="1" key="1" type="card">
           <TabPane tab="Kinder 1" key="1" className="tabColor">
             <div className="row">
               <div className="col-md-4">
-                <TextField
-                  label="Vorname"
-                  name="vorname"
-                  value={input.vorname}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                  onBlur={onBlur}
-                  helpText={errors.vorname.error}
-                  status={errors.vorname.status}
-                />
+                <div className="form-group">
+                  <TextField
+                    label="Vorname"
+                    name="vorname"
+                    value={input.Vorname}
+                    className="customInput"
+                    onChange={(e) => handleInput(e)}
+                    onBlur={onBlur}
+                    helpText={errors.vorname.error}
+                    status={errors.vorname.status}
+                  />
+                </div>
               </div>
               <div className="col-md-4">
                 <TextField
                   label="Nachname"
                   name="nachname"
-                  value={input.nachname}
+                  value={input.Nachname}
                   className="customInput"
                   onChange={(e) => handleInput(e)}
                   onBlur={onBlur}
@@ -243,7 +242,7 @@ function ChildData() {
                 <TextField
                   label="Geburtsdatum"
                   name="geburtsdatum"
-                  value={input.geburtsdatum}
+                  value={input.Geburtsdatum}
                   className="customInput"
                   onChange={(e) => handleInput(e)}
                   onBlur={onBlur}
@@ -257,7 +256,7 @@ function ChildData() {
                 <TextField
                   label="Geburtsort"
                   name="geburtsort"
-                  value={input.geburtsort}
+                  value={input.Geburtsort}
                   className="customInput"
                   onChange={(e) => handleInput(e)}
                   onBlur={onBlur}
@@ -269,7 +268,7 @@ function ChildData() {
                 <TextField
                   label="Geburtsname"
                   name="geburtsname"
-                  value={input.geburtsname}
+                  value={input.Geburtsname}
                   className="customInput"
                   onChange={(e) => handleInput(e)}
                   onBlur={onBlur}
@@ -290,7 +289,7 @@ function ChildData() {
                 <TextField
                   label="Religion"
                   name="religion"
-                  value={input.religion}
+                  value={input.Religion}
                   className="customInput"
                   onChange={(e) => handleInput(e)}
                   onBlur={onBlur}
@@ -302,7 +301,7 @@ function ChildData() {
                 <TextField
                   label=" Kindschaftsverhältnis Steuerpfl"
                   name="kindschaftsverhältnisSteuerpfl"
-                  value={input.kindschaftsverhältnisSteuerpfl}
+                  value={input.KindschaftsverhältnisSteuerpfl}
                   className="customInput"
                   onChange={(e) => handleInput(e)}
                 />
@@ -322,7 +321,7 @@ function ChildData() {
                 <TextField
                   label="Ausbildungsstand/Beruf"
                   name="ausbildungsstand"
-                  value={input.ausbildungsstand}
+                  value={input.Ausbildungsstand}
                   className="customInput"
                   onChange={(e) => handleInput(e)}
                   onBlur={onBlur}
@@ -334,7 +333,7 @@ function ChildData() {
                 <TextField
                   label="Identifikationsnummer"
                   name="identifikationsnummer"
-                  value={input.identifikationsnummer}
+                  value={input.Identifikationsnummer}
                   className="customInput"
                   onChange={(e) => handleInput(e)}
                   onBlur={onBlur}
@@ -359,7 +358,7 @@ function ChildData() {
                 <TextField
                   label="Vorname"
                   name="vorname"
-                  value={input.vorname}
+                  value={input.Vorname}
                   className="customInput"
                   onChange={(e) => handleInput(e)}
                 />
@@ -403,7 +402,7 @@ function ChildData() {
                 />
               </div>
               <div className="col-md-4">
-                <Dropdown title="Geschlecht" className="dropItem">
+                <Dropdown title="Geschlecht">
                   <Button>männlich</Button>
                   <Button>weiblich</Button>
                 </Dropdown>
@@ -430,11 +429,7 @@ function ChildData() {
                 />
               </div>
               <div className="col-md-4">
-                <Dropdown
-                  title="Familienstand"
-                  className="dropItem"
-                  style={{ width: '300px' }}
-                >
+                <Dropdown title="Familienstand">
                   <Button>ledig</Button>
                   <Button>verheiratet</Button>
                   <Button>geschieden</Button>
@@ -708,7 +703,7 @@ function ChildData() {
         </Tabs>
       </div>
     </div>
-  )
+  );
 }
 
-export default ChildData
+export default ChildData;

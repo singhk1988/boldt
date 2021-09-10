@@ -7,7 +7,6 @@ import {
   Tooltip,
 } from "@cimpress/react-components";
 import DatePicker from "@cimpress/react-components/lib/DatePicker";
-import { MdInfo } from "react-icons/md";
 
 function CompanyData() {
   const [employment, setEmployment] = useState("Arbeitnehmer");
@@ -24,6 +23,8 @@ function CompanyData() {
     bank: "",
     iban: "",
     bic: "",
+    beruf: "",
+    arbeitgeber: "",
   });
   const [errors, setErrors] = useState({
     firmensitz: { error: "", status: "" },
@@ -36,6 +37,8 @@ function CompanyData() {
     bank: { error: "", status: "" },
     iban: { error: "", status: "" },
     bic: { error: "", status: "" },
+    beruf: { error: "", status: "" },
+    arbeitgeber: { error: "", status: "" },
   });
   const [show, setShow] = useState(false);
   const handleChange = (e) => {
@@ -61,11 +64,50 @@ function CompanyData() {
 
   const onBlur = (e) => {
     const { name, value } = e.target;
-    if (name === "firmensitz") {
+    //   if (value === "") {
+    //     setErrors({ ...errors, [name]: { error: "", status: "" } });
+    //   } else if (value.legth > 0) {
+    //     if (name === "firmensitz") {
+    //       if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
+    //         setErrors({
+    //           ...errors,
+    //           [name]: { error: `${name} not valid`, status: "error" },
+    //         });
+    //       }
+    //     } else if (name === "ustID") {
+    //       if (!/^(DE|[0-9]*)$/.test(value)) {
+    //         setErrors({
+    //           ...errors,
+    //           [name]: { error: `${name} not valid`, status: "error" },
+    //         });
+    //       }
+    //     } else if (name === "homepage") {
+    //       if (!/^[^.]+\.[^.]+$/.test(value)) {
+    //         setErrors({
+    //           ...errors,
+    //           [name]: { error: `${name} not valid`, status: "error" },
+    //         });
+    //       }
+    //     }
+    //   } else {
+    //     setErrors({ ...errors, [name]: { error: "", status: "" } });
+    //   }
+    // };
+
+    if (
+      name === "firmensitz" ||
+      name === "finanzamt" ||
+      name === "bank" ||
+      name === "beruf" ||
+      name === "arbeitgeber"
+    ) {
       if (value === "") {
         setErrors({ ...errors, [name]: { error: "", status: "" } });
       } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
-        setErrors(...errors, { error: `${name} not valid`, status: "error" });
+        setErrors({
+          ...errors,
+          [name]: { error: `${name} not valid`, status: "error" },
+        });
       } else {
         setErrors({ ...errors, [name]: { error: "", status: "" } });
       }
@@ -74,6 +116,61 @@ function CompanyData() {
       if (value === "") {
         setErrors({ ...errors, [name]: { error: "", status: "" } });
       } else if (!/^(DE|[0-9]*)$/.test(value)) {
+        setErrors({
+          ...errors,
+          [name]: { error: `${name} not valid`, status: "error" },
+        });
+      } else {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
+      }
+    } else if (name === "homepage") {
+      if (value === "") {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
+      } else if (!/^[^.]+\.[^.]+$/.test(value)) {
+        setErrors({
+          ...errors,
+          [name]: { error: `${name} not valid`, status: "error" },
+        });
+      } else {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
+      }
+    } else if (name === "steuernummer") {
+      if (value === "") {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
+      } else if (!/^[A-Z0-9]{13}$/.test(value)) {
+        setErrors({
+          ...errors,
+          [name]: { error: `${name} not valid`, status: "error" },
+        });
+      } else {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
+      }
+    } else if (name === "konto" || name === "blz") {
+      if (value === "") {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
+      } else if (!/^[0-9]{10}$/.test(value)) {
+        setErrors({
+          ...errors,
+          [name]: { error: `${name} not valid`, status: "error" },
+        });
+      } else {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
+      }
+    } else if (name === "iban") {
+      if (value === "") {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
+      } else if (!/[A-Z]{2}\d{20}/.test(value)) {
+        setErrors({
+          ...errors,
+          [name]: { error: `${name} not valid`, status: "error" },
+        });
+      } else {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
+      }
+    } else if (name === "bic") {
+      if (value === "") {
+        setErrors({ ...errors, [name]: { error: "", status: "" } });
+      } else if (!/^[A-Z0-9]*$/.test(value)) {
         setErrors({
           ...errors,
           [name]: { error: `${name} not valid`, status: "error" },
@@ -128,12 +225,13 @@ function CompanyData() {
                   value={values.firmensitz}
                   onChange={(e) => handleChange(e)}
                   onBlur={onBlur}
+                  helpText={errors.firmensitz.error}
+                  status={errors.firmensitz.status}
                 />
               </div>
             </div>
             <div className="row">
               <div className="col-md-6">
-                {" "}
                 <TextField
                   name="ustID"
                   label="Ust.-ID"
@@ -154,12 +252,14 @@ function CompanyData() {
               </div>
               <div className="col-md-6">
                 <TextField
-                  className="postal-code"
+                  // className="postal-code"
                   name="homepage"
                   label="Homepage"
                   value={values.homepage}
                   onChange={(e) => handleChange(e)}
                   onBlur={onBlur}
+                  helpText={errors.homepage.error}
+                  status={errors.homepage.status}
                 />
               </div>
             </div>
@@ -172,6 +272,8 @@ function CompanyData() {
                   value={values.steuernummer}
                   onChange={(e) => handleChange(e)}
                   onBlur={onBlur}
+                  helpText={errors.steuernummer.error}
+                  status={errors.steuernummer.status}
                 />
               </div>
               <div className="col-md-6">
@@ -181,6 +283,8 @@ function CompanyData() {
                   value={values.finanzamt}
                   onChange={(e) => handleChange(e)}
                   onBlur={onBlur}
+                  helpText={errors.finanzamt.error}
+                  status={errors.finanzamt.status}
                 />
               </div>
             </div>
@@ -193,6 +297,8 @@ function CompanyData() {
                   value={values.konto}
                   onChange={(e) => handleChange(e)}
                   onBlur={onBlur}
+                  helpText={errors.konto.error}
+                  status={errors.konto.status}
                 />
               </div>
               <div className="col-md-6">
@@ -203,6 +309,8 @@ function CompanyData() {
                   value={values.blz}
                   onChange={(e) => handleChange(e)}
                   onBlur={onBlur}
+                  helpText={errors.blz.error}
+                  status={errors.blz.status}
                 />
               </div>
             </div>
@@ -214,6 +322,8 @@ function CompanyData() {
                   value={values.bank}
                   onChange={(e) => handleChange(e)}
                   onBlur={onBlur}
+                  helpText={errors.bank.error}
+                  status={errors.bank.status}
                 />
               </div>
               <div className="col-md-6">
@@ -224,6 +334,8 @@ function CompanyData() {
                   value={values.iban}
                   onChange={(e) => handleChange(e)}
                   onBlur={onBlur}
+                  helpText={errors.iban.error}
+                  status={errors.iban.status}
                 />
               </div>
             </div>
@@ -235,6 +347,8 @@ function CompanyData() {
                   value={values.bic}
                   onChange={(e) => handleChange(e)}
                   onBlur={onBlur}
+                  helpText={errors.bic.error}
+                  status={errors.bic.status}
                 />
               </div>
             </div>
@@ -244,19 +358,25 @@ function CompanyData() {
           <div className="row">
             <div className="col-md-6">
               <TextField
-                name="Beruf"
+                name="beruf"
                 label="Beruf"
-                value={values.bank}
+                value={values.beruf}
+                onBlur={onBlur}
                 onChange={(e) => handleChange(e)}
+                helpText={errors.beruf.error}
+                status={errors.beruf.status}
               />
             </div>
             <div className="col-md-6">
               <TextField
-                name="Arbeitgeber"
+                name="arbeitgeber"
                 label="Arbeitgeber"
                 maxLength="22"
-                value={values.iban}
+                onBlur={onBlur}
+                value={values.arbeitgeber}
                 onChange={(e) => handleChange(e)}
+                helpText={errors.arbeitgeber.error}
+                status={errors.arbeitgeber.status}
               />
             </div>
           </div>
