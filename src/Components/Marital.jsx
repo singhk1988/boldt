@@ -25,7 +25,7 @@ function Marital1() {
     eTIN: "",
     Familienstand: "Familienstand",
   });
-
+  const [Gütergemeinschaft, setGütergemeinschaft] = useState("Nien");
   const [errors, setError] = useState({
     Vorname: { error: "", status: "" },
     Nachname: { error: "", status: "" },
@@ -42,6 +42,10 @@ function Marital1() {
     Identifikationsnummer: { error: "", status: "" },
     eTIN: { error: "", status: "" },
   });
+
+  const changeCommunityProperty = (e, value) => {
+    setGütergemeinschaft(value);
+  };
 
   const onBlur = (e) => {
     const { name, value } = e.target;
@@ -131,8 +135,13 @@ function Marital1() {
             </div>
             <div className="col-md-6">
               <h4>Leben Sie in einer Gütergemeinschaft?</h4>
-              <RadioGroup inline name="radioTest">
-                <Radio label="Ja" value="Ja" />
+              <RadioGroup
+                inline
+                name="radioTest"
+                defaultSelected={Gütergemeinschaft}
+                onChange={changeCommunityProperty}
+              >
+                <Radio label="Ja" value="Ja" style={{ marginTop: "0px" }} />
                 <Radio label="Nien" value="Nien" />
               </RadioGroup>
             </div>

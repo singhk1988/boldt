@@ -15,11 +15,11 @@
   padding: 20px;
 }
 .home-button {
-  background: "#2C88FF"; 
+  background: "#2C88FF";
   border: "1px solid #2C88FF";
 }
 .home-continue-button {
-  background: "#2C88FF"; 
+  background: "#2C88FF";
   border: "1px solid #2C88FF";
 }
 .cotainner {
@@ -29,7 +29,7 @@
 }
 
 .title {
-  color: #305F9D;
+  color: #305f9d;
 }
 
 .margin-body {
@@ -39,10 +39,10 @@
   font-size: 13px;
 }
 
-.form-textbox{
+.form-textbox {
   width: 100% !important;
 }
-.form-textbox .rdt{
+.form-textbox .rdt {
   width: 100% !important;
 }
 
@@ -51,7 +51,7 @@ input {
 }
 
 form-control:focus {
-  border-color: #2C88FF !important;
+  border-color: #2c88ff !important;
 }
 
 /* div[value*="step-circle"] {
