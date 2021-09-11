@@ -10,7 +10,7 @@ import {
 import "../Styles/childData.css";
 
 function ChildData() {
-  const [employment, setEmployment] = useState("Arbeitnehmer");
+  const [childrenStatus, setChildrenStatus] = useState("Nein");
 
   const [dropValue, setDropValue] = useState({});
   const [value, setRadio] = useState({});
@@ -54,8 +54,8 @@ function ChildData() {
   const handleMenuClick = (e) => {
     setDropValue(e.target.value);
   };
-  const onChangeEmploye = (e, value) => {
-    setEmployment(value);
+  const onChangeChildren = (e, value) => {
+    setChildrenStatus(value);
   };
 
   const onBlur = (e) => {
@@ -191,10 +191,11 @@ function ChildData() {
           <div className="col-md-6">
             <RadioGroup
               inline
-              onChange={handleRadio}
+              // onChange={handleRadio}
+              defaultSelected={childrenStatus}
               name="radioTest"
               value={value}
-              // onChange={onChangeEmploye}
+              onChange={onChangeChildren}
             >
               <Radio label="Ja" value={"Ja"} />
               <Radio label="Nein" value={"Nein"} />
