@@ -14,19 +14,39 @@ function ChildData() {
 
   const [dropValue, setDropValue] = useState({});
   const [value, setRadio] = useState({});
-  const [input, setInput] = useState({
-    Vorname: "",
-    Nachname: "",
-    Geburtsdatum: "",
-    Geburtsort: "",
-    Geburtsname: "",
-    Geschlecht: "",
-    Religion: "",
-    KindschaftsverhältnisSteuerpfl: "",
-    Ausbildungsstand: "",
-    Identifikationsnummer: "",
+
+  const [formData, setformData] = useState();
+  const [error, seterror] = useState();
+  const data = {
+    vorname: "",
+    nachname: "",
+    geburtsdatum: "",
+    geburtsort: "",
+    geburtsname: "",
+    geschlecht: "",
+    religion: "",
+    kindschaftsverhältnisSteuerpfl: "",
+    ausbildungsstand: "",
+    identifikationsnummer: "",
     eTIN: "",
-  });
+    Familienstand: "Familienstand",
+    Geschlecht: "Geschlecht",
+  };
+
+  const err = {
+    vorname: { error: "", status: "" },
+    nachname: { error: "", status: "" },
+    geburtsdatum: { error: "", status: "" },
+    geburtsort: { error: "", status: "" },
+    geburtsname: { error: "", status: "" },
+    geschlecht: { error: "", status: "" },
+    religion: { error: "", status: "" },
+    kindschaftsverhältnisSteuerpfl: { error: "", status: "" },
+    ausbildungsstand: { error: "", status: "" },
+    identifikationsnummer: { error: "", status: "" },
+    eTIN: { error: "", status: "" },
+  };
+
   const [errors, setErrors] = useState({
     vorname: { error: "", status: "" },
     nachname: { error: "", status: "" },
@@ -44,139 +64,93 @@ function ChildData() {
   const handleRadio = (e) => {
     setRadio(e.target.value);
   };
-  const handleInput = (e) => {
+  const handleInput = (e, i) => {
     const { name, value } = e.target;
-    setInput({
-      ...input,
-      [name]: value,
-    });
+    let newArray = [...formData];
+    newArray[i] = { ...newArray[i], [name]: value };
+    setformData([...newArray]);
   };
+
   const handleMenuClick = (e) => {
     setDropValue(e.target.value);
   };
   const onChangeChildren = (e, value) => {
     setChildrenStatus(value);
   };
-
-  const onBlur = (e) => {
+  const onBlur = (e, i) => {
     const { name, value } = e.target;
-    if (name === "vorname") {
+    if (
+      name === "ausbildungsstand" ||
+      name === "religion" ||
+      name === "vorname" ||
+      name === "nachname" ||
+      name === "geburtsort" ||
+      name === "geburtsname"
+    ) {
       if (value === "") {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
+        let newArray = [...error];
+        newArray[i] = { ...newArray[i], [name]: { error: "", status: "" } };
+        seterror([...newArray]);
+
+        // setErrors({ ...errors, [name]: { error: "", status: "" } });
       } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
         // setErrors(...errors, { error: `${name} not valid`, status: 'error' })
-        setErrors({
-          ...errors,
+        // setErrors({
+        //   ...errors,
+        //   [name]: { error: `${name} not valid`, status: "error" },
+        // });
+
+        let newArray = [...error];
+        newArray[i] = {
+          ...newArray[i],
           [name]: { error: `${name} not valid`, status: "error" },
-        });
+        };
+        seterror([...newArray]);
       } else {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
-      }
-    } else if (name === "nachname") {
-      console.log("Here::::");
-      if (value === "") {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
-      } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
-        setErrors({
-          ...errors,
-          [name]: { error: `${name} not valid`, status: "error" },
-        });
-      } else {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
+        let newArray = [...error];
+        newArray[i] = { ...newArray[i], [name]: { error: "", status: "" } };
+        seterror([...newArray]);
       }
     } else if (name === "geburtsdatum") {
-      console.log("Here::::");
       if (value === "") {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
+        let newArray = [...error];
+        newArray[i] = { ...newArray[i], [name]: { error: "", status: "" } };
+        seterror([...newArray]);
       } else if (
         !/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/.test(
           value
         )
       ) {
-        setErrors({
-          ...errors,
+        let newArray = [...error];
+        newArray[i] = {
+          ...newArray[i],
           [name]: { error: `${name} not valid`, status: "error" },
-        });
+        };
+        seterror([...newArray]);
       } else {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
-      }
-    } else if (name === "geburtsort") {
-      console.log("Here::::");
-      if (value === "") {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
-      } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
-        setErrors({
-          ...errors,
-          [name]: { error: `${name} not valid`, status: "error" },
-        });
-      } else {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
-      }
-    } else if (name === "geburtsname") {
-      console.log("Here::::");
-      if (value === "") {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
-      } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
-        setErrors({
-          ...errors,
-          [name]: { error: `${name} not valid`, status: "error" },
-        });
-      } else {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
-      }
-    }
-
-    // geschlecht
-
-    //  else if (name === 'geschlecht') {
-    //   console.log('Here::::')
-    //   if (value === '') {
-    //     setErrors({ ...errors, [name]: { error: '', status: '' } })
-    //   } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
-    //     setErrors({
-    //       ...errors,
-    //       [name]: { error: `${name} not valid`, status: 'error' },
-    //     })
-    //   } else {
-    //     setErrors({ ...errors, [name]: { error: '', status: '' } })
-    //   }
-    // }
-    else if (name === "religion") {
-      if (value === "") {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
-      } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
-        setErrors({
-          ...errors,
-          [name]: { error: `${name} not valid`, status: "error" },
-        });
-      } else {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
-      }
-    } else if (name === "ausbildungsstand") {
-      if (value === "") {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
-      } else if (!/^([a-zA-Z]+\s)*[a-zA-Z]+$/.test(value)) {
-        setErrors({
-          ...errors,
-          [name]: { error: `${name} not valid`, status: "error" },
-        });
-      } else {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
+        let newArray = [...error];
+        newArray[i] = { ...newArray[i], [name]: { error: "", status: "" } };
+        seterror([...newArray]);
       }
     } else if (name === "identifikationsnummer") {
       if (value === "") {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
+        let newArray = [...error];
+        newArray[i] = { ...newArray[i], [name]: { error: "", status: "" } };
+        seterror([...newArray]);
       } else if (!/^([1-9][0-9]*)|([0]+)$/.test(value)) {
-        setErrors({
-          ...errors,
+        let newArray = [...error];
+        newArray[i] = {
+          ...newArray[i],
           [name]: { error: `${name} not valid`, status: "error" },
-        });
+        };
+        seterror([...newArray]);
       } else {
-        setErrors({ ...errors, [name]: { error: "", status: "" } });
+        let newArray = [...error];
+        newArray[i] = { ...newArray[i], [name]: { error: "", status: "" } };
+        seterror([...newArray]);
       }
     }
   };
-
   return (
     <div className="personalData" align="left">
       <h1>
@@ -202,506 +176,283 @@ function ChildData() {
             </RadioGroup>
           </div>
           <div className="col-md-6">
-            <Dropdown title="Wie viele Kinder haben Sie? ">
-              <Button>1</Button>
-              <Button>2</Button>
-              <Button>3</Button>
-              <Button>4</Button>
+            <Dropdown
+              title={
+                formData ? formData.length : "Wie viele Kinder haben Sie? "
+              }
+            >
+              <Button
+                onClick={() => {
+                  setformData([data]);
+                  seterror([err]);
+                }}
+              >
+                1
+              </Button>
+              <Button
+                onClick={() => {
+                  setformData([data, data]);
+                  seterror([err, err]);
+                }}
+              >
+                2
+              </Button>
+              <Button
+                onClick={() => {
+                  setformData([data, data, data]);
+                  seterror([err, err, err]);
+                }}
+              >
+                3
+              </Button>
+              <Button
+                onClick={() => {
+                  setformData([data, data, data, data]);
+                  seterror([err, err, err, err]);
+                }}
+              >
+                4
+              </Button>
             </Dropdown>
           </div>
         </div>
-        <Tabs defaultActiveJey="1" key="1" type="card">
-          <TabPane tab="Kinder 1" key="1" className="tabColor">
-            <div className="row">
-              <div className="col-md-4">
-                <div className="form-group">
-                  <TextField
-                    label="Vorname"
-                    name="vorname"
-                    value={input.Vorname}
-                    className="customInput"
-                    onChange={(e) => handleInput(e)}
-                    onBlur={onBlur}
-                    helpText={errors.vorname.error}
-                    status={errors.vorname.status}
-                  />
-                </div>
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Nachname"
-                  name="nachname"
-                  value={input.Nachname}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                  onBlur={onBlur}
-                  helpText={errors.nachname.error}
-                  status={errors.nachname.status}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Geburtsdatum"
-                  name="geburtsdatum"
-                  value={input.Geburtsdatum}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                  onBlur={onBlur}
-                  helpText={errors.geburtsdatum.error}
-                  status={errors.geburtsdatum.status}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-4">
-                <TextField
-                  label="Geburtsort"
-                  name="geburtsort"
-                  value={input.Geburtsort}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                  onBlur={onBlur}
-                  helpText={errors.geburtsort.error}
-                  status={errors.geburtsort.status}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Geburtsname"
-                  name="geburtsname"
-                  value={input.Geburtsname}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                  onBlur={onBlur}
-                  helpText={errors.geburtsort.error}
-                  status={errors.geburtsort.status}
-                />
-              </div>
-              <div className="col-md-4">
-                <Dropdown title="Geschlecht" className="dropItem">
-                  <Button>männlich</Button>
-                  <Button>weiblich</Button>
-                </Dropdown>
-              </div>
-            </div>
+        <div className="card-container">
+          <Tabs defaultActiveJey="1" key="1" type="card">
+            {formData &&
+              formData.length > 0 &&
+              formData.map((data, i) => {
+                return (
+                  <TabPane
+                    tab={`Kinder ${i + 1}`}
+                    key={i + 1}
+                    className="tabColor"
+                  >
+                    <div className="row">
+                      <div className="col-md-4">
+                        <div className="form-group">
+                          <TextField
+                            label="Vorname"
+                            name="vorname"
+                            value={data.vorname}
+                            className="customInput"
+                            onChange={(e) => handleInput(e, i)}
+                            onBlur={(e) => onBlur(e, i)}
+                            helpText={error[i].vorname.error}
+                            status={error[i].vorname.status}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-4">
+                        <TextField
+                          label="Nachname"
+                          name="nachname"
+                          value={data.nachname}
+                          className="customInput"
+                          onChange={(e) => handleInput(e, i)}
+                          onBlur={(e) => onBlur(e, i)}
+                          helpText={error[i].nachname.error}
+                          status={error[i].nachname.status}
+                        />
+                      </div>
+                      <div className="col-md-4">
+                        <TextField
+                          label="Geburtsdatum"
+                          name="geburtsdatum"
+                          value={data.geburtsdatum}
+                          className="customInput"
+                          onChange={(e) => handleInput(e, i)}
+                          onBlur={(e) => onBlur(e, i)}
+                          helpText={error[i].geburtsdatum.error}
+                          status={error[i].geburtsdatum.status}
+                        />
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-4">
+                        <TextField
+                          label="Geburtsort"
+                          name="geburtsort"
+                          value={data.geburtsort}
+                          className="customInput"
+                          onChange={(e) => handleInput(e, i)}
+                          onBlur={(e) => onBlur(e, i)}
+                          helpText={error[i].geburtsort.error}
+                          status={error[i].geburtsort.status}
+                        />
+                      </div>
+                      <div className="col-md-4">
+                        <TextField
+                          label="Geburtsname"
+                          name="geburtsname"
+                          value={data.geburtsname}
+                          className="customInput"
+                          onChange={(e) => handleInput(e, i)}
+                          onBlur={(e) => onBlur(e, i)}
+                          helpText={error[i].geburtsort.error}
+                          status={error[i].geburtsort.status}
+                        />
+                      </div>
+                      <div className="col-md-4">
+                        <Dropdown title={data.Geschlecht} className="dropItem">
+                          <Button
+                            onClick={() => {
+                              let newArray = [...formData];
+                              newArray[i] = {
+                                ...newArray[i],
+                                Geschlecht: "männlich",
+                              };
+                              setformData([...newArray]);
+                            }}
+                          >
+                            männlich
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              let newArray = [...formData];
+                              newArray[i] = {
+                                ...newArray[i],
+                                Geschlecht: "weiblich",
+                              };
+                              setformData([...newArray]);
+                            }}
+                          >
+                            weiblich
+                          </Button>
+                        </Dropdown>
+                      </div>
+                    </div>
 
-            <div className="row">
-              <div className="col-md-4">
-                <TextField
-                  label="Religion"
-                  name="religion"
-                  value={input.Religion}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                  onBlur={onBlur}
-                  helpText={errors.religion.error}
-                  status={errors.religion.status}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label=" Kindschaftsverhältnis Steuerpfl"
-                  name="kindschaftsverhältnisSteuerpfl"
-                  value={input.KindschaftsverhältnisSteuerpfl}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <Dropdown title="Familienstand" className="dropItem">
-                  <Button>ledig</Button>
-                  <Button>verheiratet</Button>
-                  <Button>geschieden</Button>
-                  <Button>inEingetragenerLebenspartnerschaft</Button>
-                  <Button>nichtBekannt</Button>
-                </Dropdown>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-4">
-                <TextField
-                  label="Ausbildungsstand/Beruf"
-                  name="ausbildungsstand"
-                  value={input.Ausbildungsstand}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                  onBlur={onBlur}
-                  helpText={errors.ausbildungsstand.error}
-                  status={errors.ausbildungsstand.status}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Identifikationsnummer"
-                  name="identifikationsnummer"
-                  value={input.Identifikationsnummer}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                  onBlur={onBlur}
-                  helpText={errors.identifikationsnummer.error}
-                  status={errors.identifikationsnummer.status}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="eTIN"
-                  name="eTIN"
-                  value={input.eTIN}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-            </div>
-          </TabPane>
-          <TabPane tab="Kinder 2" key="2" className="tabColor">
-            <div className="row">
-              <div className="col-md-4">
-                <TextField
-                  label="Vorname"
-                  name="vorname"
-                  value={input.Vorname}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Nachname"
-                  name="nachname"
-                  value={input.nachname}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Geburtsdatum"
-                  name="geburtsdatum"
-                  value={input.geburtsdatum}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-4">
-                <TextField
-                  label="Geburtsort"
-                  name="geburtsort"
-                  value={input.geburtsort}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Geburtsname"
-                  name="geburtsname"
-                  value={input.geburtsname}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <Dropdown title="Geschlecht">
-                  <Button>männlich</Button>
-                  <Button>weiblich</Button>
-                </Dropdown>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-md-4">
-                <TextField
-                  label="Religion"
-                  name="religion"
-                  value={input.religion}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label=" Kindschaftsverhältnis Steuerpfl"
-                  name="kindschaftsverhältnisSteuerpfl"
-                  value={input.kindschaftsverhältnisSteuerpfl}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <Dropdown title="Familienstand">
-                  <Button>ledig</Button>
-                  <Button>verheiratet</Button>
-                  <Button>geschieden</Button>
-                  <Button>inEingetragenerLebenspartnerschaft</Button>
-                  <Button>nichtBekannt</Button>
-                </Dropdown>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-4">
-                <TextField
-                  label="Ausbildungsstand/Beruf"
-                  name="ausbildungsstand"
-                  value={input.ausbildungsstand}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Identifikationsnummer"
-                  name="identifikationsnummer"
-                  value={input.identifikationsnummer}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="eTIN"
-                  name="eTIN"
-                  value={input.eTIN}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-            </div>
-          </TabPane>
-          <TabPane tab="Kinder 3" key="3" className="tabColor">
-            <div className="row">
-              <div className="col-md-4">
-                <TextField
-                  label="Vorname"
-                  name="vorname"
-                  value={input.vorname}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Nachname"
-                  name="nachname"
-                  value={input.nachname}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Geburtsdatum"
-                  name="geburtsdatum"
-                  value={input.geburtsdatum}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-4">
-                <TextField
-                  label="Geburtsort"
-                  name="geburtsort"
-                  value={input.geburtsort}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Geburtsname"
-                  name="geburtsname"
-                  value={input.geburtsname}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <Dropdown title="Geschlecht" className="dropItem">
-                  <Button>männlich</Button>
-                  <Button>weiblich</Button>
-                </Dropdown>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-md-4">
-                <TextField
-                  label="Religion"
-                  name="religion"
-                  value={input.religion}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label=" Kindschaftsverhältnis Steuerpfl"
-                  name="kindschaftsverhältnisSteuerpfl"
-                  value={input.kindschaftsverhältnisSteuerpfl}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <Dropdown title="Familienstand" className="dropItem">
-                  <Button>ledig</Button>
-                  <Button>verheiratet</Button>
-                  <Button>geschieden</Button>
-                  <Button>inEingetragenerLebenspartnerschaft</Button>
-                  <Button>nichtBekannt</Button>
-                </Dropdown>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-4">
-                <TextField
-                  label="Ausbildungsstand/Beruf"
-                  name="ausbildungsstand"
-                  value={input.ausbildungsstand}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Identifikationsnummer"
-                  name="identifikationsnummer"
-                  value={input.identifikationsnummer}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="eTIN"
-                  name="eTIN"
-                  value={input.eTIN}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-            </div>
-          </TabPane>
-          <TabPane tab="Kinder 4" key="4" className="tabColor">
-            <div className="row">
-              <div className="col-md-4">
-                <TextField
-                  label="Vorname"
-                  name="vorname"
-                  value={input.vorname}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Nachname"
-                  name="nachname"
-                  value={input.nachname}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Geburtsdatum"
-                  name="geburtsdatum"
-                  value={input.geburtsdatum}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-4">
-                <TextField
-                  label="Geburtsort"
-                  name="geburtsort"
-                  value={input.geburtsort}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Geburtsname"
-                  name="geburtsname"
-                  value={input.geburtsname}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <Dropdown title="Geschlecht" className="dropItem">
-                  <Button>männlich</Button>
-                  <Button>weiblich</Button>
-                </Dropdown>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-md-4">
-                <TextField
-                  label="Religion"
-                  name="religion"
-                  value={input.religion}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label=" Kindschaftsverhältnis Steuerpfl"
-                  name="kindschaftsverhältnisSteuerpfl"
-                  value={input.kindschaftsverhältnisSteuerpfl}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <Dropdown title="Familienstand" className="dropItem">
-                  <Button>ledig</Button>
-                  <Button>verheiratet</Button>
-                  <Button>geschieden</Button>
-                  <Button>inEingetragenerLebenspartnerschaft</Button>
-                  <Button>nichtBekannt</Button>
-                </Dropdown>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-4">
-                <TextField
-                  label="Ausbildungsstand/Beruf"
-                  name="ausbildungsstand"
-                  value={input.ausbildungsstand}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="Identifikationsnummer"
-                  name="identifikationsnummer"
-                  value={input.identifikationsnummer}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <TextField
-                  label="eTIN"
-                  name="eTIN"
-                  value={input.eTIN}
-                  className="customInput"
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-            </div>
-          </TabPane>
-        </Tabs>
+                    <div className="row">
+                      <div className="col-md-4">
+                        <TextField
+                          label="Religion"
+                          name="religion"
+                          value={data.religion}
+                          className="customInput"
+                          onChange={(e) => handleInput(e, i)}
+                          onBlur={(e) => onBlur(e, i)}
+                          helpText={error[i].religion.error}
+                          status={error[i].religion.status}
+                        />
+                      </div>
+                      <div className="col-md-4">
+                        <TextField
+                          label="Kindschaftsverhältnis Steuerpfl"
+                          name="kindschaftsverhältnisSteuerpfl"
+                          value={data.kindschaftsverhältnisSteuerpfl}
+                          className="customInput"
+                          onChange={(e) => handleInput(e, i)}
+                        />
+                      </div>
+                      <div className="col-md-4">
+                        <Dropdown
+                          title={data.Familienstand}
+                          className="dropItem"
+                        >
+                          <Button
+                            onClick={() => {
+                              let newArray = [...formData];
+                              newArray[i] = {
+                                ...newArray[i],
+                                Familienstand: "ledig",
+                              };
+                              setformData([...newArray]);
+                            }}
+                          >
+                            ledig
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              let newArray = [...formData];
+                              newArray[i] = {
+                                ...newArray[i],
+                                Familienstand: "verheiratet",
+                              };
+                              setformData([...newArray]);
+                            }}
+                          >
+                            verheiratet
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              let newArray = [...formData];
+                              newArray[i] = {
+                                ...newArray[i],
+                                Familienstand: "geschieden",
+                              };
+                              setformData([...newArray]);
+                            }}
+                          >
+                            geschieden
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              let newArray = [...formData];
+                              newArray[i] = {
+                                ...newArray[i],
+                                Familienstand:
+                                  "inEingetragenerLebenspartnerschaft",
+                              };
+                              setformData([...newArray]);
+                            }}
+                          >
+                            inEingetragenerLebenspartnerschaft
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              let newArray = [...formData];
+                              newArray[i] = {
+                                ...newArray[i],
+                                Familienstand: "nichtBekannt",
+                              };
+                              setformData([...newArray]);
+                            }}
+                          >
+                            nichtBekannt
+                          </Button>
+                        </Dropdown>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-4">
+                        <TextField
+                          label="Ausbildungsstand/Beruf"
+                          name="ausbildungsstand"
+                          value={data.ausbildungsstand}
+                          className="customInput"
+                          onChange={(e) => handleInput(e, i)}
+                          onBlur={(e) => onBlur(e, i)}
+                          helpText={error[i].ausbildungsstand.error}
+                          status={error[i].ausbildungsstand.status}
+                        />
+                      </div>
+                      <div className="col-md-4">
+                        <TextField
+                          label="Identifikationsnummer"
+                          name="identifikationsnummer"
+                          value={data.identifikationsnummer}
+                          className="customInput"
+                          onChange={(e) => handleInput(e, i)}
+                          onBlur={(e) => onBlur(e, i)}
+                          helpText={error[i].identifikationsnummer.error}
+                          status={error[i].identifikationsnummer.status}
+                        />
+                      </div>
+                      <div className="col-md-4">
+                        <TextField
+                          label="eTIN"
+                          name="eTIN"
+                          value={data.eTIN}
+                          className="customInput"
+                          onChange={(e) => handleInput(e, i)}
+                        />
+                      </div>
+                    </div>
+                  </TabPane>
+                );
+              })}
+          </Tabs>
+        </div>
       </div>
     </div>
   );
