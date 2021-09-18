@@ -71,6 +71,6 @@ body {
   list-style: none;
   font-feature-settings: "tnum", "tnum";
   display: flex;
-  overflow: visible;
+  overflow: visible !important;
   margin-top: 20px;
 }
